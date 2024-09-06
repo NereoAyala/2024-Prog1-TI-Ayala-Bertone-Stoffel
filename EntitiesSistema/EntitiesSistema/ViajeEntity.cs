@@ -19,6 +19,7 @@ namespace EntitiesSistema
         public void AsignarCamioneta() { } //ESTO VA EN EL SERVICE
         public void ValidarDistanciaCamioneta() { } //VER DONDE VA  
 
-        public void ValidarCompletitudCamioneta() { } 
+        public void ValidarCompletitudCamioneta() { }
+        public void ReprogramarCompras() { } //va en service
     }
 }
