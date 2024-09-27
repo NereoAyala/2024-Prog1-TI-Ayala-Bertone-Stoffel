@@ -2,7 +2,7 @@
 {
     public class ProductoEntity
     {
-        public int Id { get; set; }
+        public int IdProducto { get; set; }
         public string Nombre { get; set; }
         public int AltoCaja { get; set; }
         public int AnchoCaja { get; set; }

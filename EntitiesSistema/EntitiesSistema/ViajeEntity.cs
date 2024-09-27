@@ -8,7 +8,7 @@ namespace EntitiesSistema
 {
     public class ViajeEntity
     {
-        public int CodigoViaje { get; set; }
+        public int IdViaje { get; set; }
         public int IdCamioneta { get; set; }
         public DateTime FechaEntregaDesde { get; set; }
         public DateTime FechaEntregaHasta { get; set; }

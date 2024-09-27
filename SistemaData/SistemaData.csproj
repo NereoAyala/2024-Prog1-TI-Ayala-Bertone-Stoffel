@@ -14,4 +14,8 @@
     <ProjectReference Include="..\EntitiesSistema\EntitiesSistema\EntitiesSistema.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="JSON\" />
+  </ItemGroup>
+
 </Project>

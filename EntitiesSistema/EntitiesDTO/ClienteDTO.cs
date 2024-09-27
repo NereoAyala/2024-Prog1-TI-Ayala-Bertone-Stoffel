@@ -4,20 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EntitiesSistema
+namespace EntitiesDTO
 {
-    public class ClienteEntity
+    public class ClienteDTO
     {
-
         public int DniCliente { get; set; }
         public string Nombre { get; set; }
         public string Apellido { get; set; }
         public string Email { get; set; }
         public int Telefono { get; set; }
-        public int Latitud { get; set; }
-        public int Longitud { get; set; }
         public DateTime FechaNacimiento { get; set; }
-
-        public void Validar() { } 
     }
 }
