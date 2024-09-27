@@ -13,7 +13,7 @@ namespace SistemaData
 
         private static string ClienteFile = Path.GetFullPath("Cliente.json");
 
-        public static List<ClienteEntity> LeerSuscripcionesDesdeJson()
+        public static List<ClienteEntity> LeerClientesDesdeJson()
         {
             if (File.Exists($"{ClienteFile}"))
             {
@@ -26,17 +26,17 @@ namespace SistemaData
             }
         }
 
-        public static void EscribirSuscripcion(ClienteEntity cliente)
+        public static void EscribirClienteaJson(ClienteEntity cliente)
         {
-            List<ClienteEntity> clientes = LeerSuscripcionesDesdeJson();
+            List<ClienteEntity> clientes = LeerClientesDesdeJson();
 
-            if (cliente.DniCliente == 0)
+            if (cliente.IdCliente == 0)
             {
-                cliente.DniCliente = clientes.Count() + 1;
+                cliente.IdCliente = clientes.Count() + 1;
             }
             else
             {
-                clientes.RemoveAll(x => x.DniCliente == cliente.DniCliente);
+                clientes.RemoveAll(x => x.IdCliente == cliente.IdCliente);
             }
 
 
