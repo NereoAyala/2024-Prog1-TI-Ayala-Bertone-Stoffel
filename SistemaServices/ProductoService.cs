@@ -35,7 +35,7 @@ namespace SistemaServices
             productos.Add(ProductoEntity);
             ProductoFiles.EscribirProducto(ProductoEntity);
             resultado.Success = true;
-            resultado.Message = "El Prodcuto se cargo con Exito";
+            resultado.Message = "El Producto se cargo con Exito";
             return resultado;
         }
         public ResultadoEntity ActualizarStockProducto(int id,int stockNuevo) 
