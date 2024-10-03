@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace SistemaEntities
 {
-    internal class Enums
+    public class Enums
     {
+        public enum EstadoCompra
+        {
+            Open = 1,
+            ReadyToDispach
+        }
     }
 }

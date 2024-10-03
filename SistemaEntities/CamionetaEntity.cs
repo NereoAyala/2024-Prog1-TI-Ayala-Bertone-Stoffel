@@ -1,7 +1,10 @@
 ﻿namespace SistemaEntities
 {
-    public class Class1
+    public class CamionetaEntity
     {
-
+        public int IdCamioneta { get; set; }
+        public string Patente { get; set; }
+        public int TamañoCarga { get; set; }
+        public int DistanciaMax { get; set; }
     }
 }

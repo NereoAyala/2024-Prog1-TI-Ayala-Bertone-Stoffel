@@ -1,7 +1,9 @@
 ﻿namespace SistemaDTO
 {
-    public class Class1
+    public class CamionetaDTO
     {
-
+        public string Patente { get; set; }
+        public int TamañoCarga { get; set; }
+        public int DistanciaMax { get; set; }
     }
 }

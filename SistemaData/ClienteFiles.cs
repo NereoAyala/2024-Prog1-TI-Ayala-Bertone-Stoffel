@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using SistemaEntities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +8,41 @@ using System.Threading.Tasks;
 
 namespace SistemaData
 {
-    internal class ClienteFiles
+    public class ClienteFiles
     {
+        private static string ClienteFile = Path.GetFullPath("Cliente.json");
+
+        public static List<ClienteEntity> LeerClientesDesdeJson()
+        {
+            if (File.Exists($"{ClienteFile}"))
+            {
+                var json = File.ReadAllText($"{ClienteFile}");
+                return JsonConvert.DeserializeObject<List<ClienteEntity>>(json);
+            }
+            else
+            {
+                return new List<ClienteEntity>();
+            }
+        }
+
+        public static void EscribirClienteaJson(ClienteEntity cliente)
+        {
+            List<ClienteEntity> clientes = LeerClientesDesdeJson();
+
+            if (cliente.IdCliente == 0)
+            {
+                cliente.IdCliente = clientes.Count() + 1;
+            }
+            else
+            {
+                clientes.RemoveAll(x => x.IdCliente == cliente.IdCliente);
+            }
+
+
+            clientes.Add(cliente);
+
+            string json = JsonConvert.SerializeObject(clientes, Formatting.Indented);
+            File.WriteAllText($"{cliente}", json);
+        }
     }
 }
