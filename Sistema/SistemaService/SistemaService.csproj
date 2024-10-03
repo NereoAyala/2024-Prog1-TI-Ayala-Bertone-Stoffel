@@ -7,7 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\EntitiesSistema\EntitiesSistema.csproj" />
+    <ProjectReference Include="..\..\SistemaData\SistemaData.csproj" />
+    <ProjectReference Include="..\EntitiesDTO\SistemaDTO.csproj" />
+    <ProjectReference Include="..\EntitiesSistema\SistemaEntities.csproj" />
   </ItemGroup>
 
 </Project>
