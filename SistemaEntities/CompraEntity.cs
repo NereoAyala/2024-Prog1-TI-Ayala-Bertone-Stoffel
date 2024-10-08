@@ -15,12 +15,8 @@ namespace SistemaEntities
         public DateTime FechaCompra { get; set; }
         public DateTime FechaEntrega { get; set; }
         public Enums.EstadoCompra EstadoCompra { get; set; }
-        public int MontoCompra { get; set; }
-        public int PuntoDestino { get; set; }
+        public double MontoCompra { get; set; }
+        public double PuntoDestino { get; set; }
 
-        public void CalcularPrecioUnitario() { }
-        public void ValidarStock() { }
-        public void CalcularMontoTotal() { }
-        public void CalcularPuntoDestino() { }
     }
 }

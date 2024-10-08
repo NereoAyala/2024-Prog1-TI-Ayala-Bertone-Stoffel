@@ -17,5 +17,7 @@ namespace SistemaDTO
         public Enums.EstadoCompra EstadoCompra { get; set; }
         public int MontoCompra { get; set; }
         public int PuntoDestino { get; set; }
+        
+       
     }
 }
