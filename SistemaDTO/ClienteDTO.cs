@@ -40,7 +40,10 @@ namespace SistemaDTO
             {
                 resultado.Errores.Add("El Telefono del Cliente No es Valido");
             }
-            //VALIDAR FECHA NACIMIENTO
+            if (FechaNacimiento > DateTime.Now)
+            {
+                resultado.Errores.Add("La Fecha de Nacimiento no Puede ser Futura");
+            }
         }
     }
 }
