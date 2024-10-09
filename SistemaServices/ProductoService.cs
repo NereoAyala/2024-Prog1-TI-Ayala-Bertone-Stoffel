@@ -48,7 +48,7 @@ namespace SistemaServices
                 resultado.Errores.Add("El Producto no se encontro,Ingrese otro ID");
                 return resultado;
             }
-            producto.StockDisponible=+stockNuevo;//el stockNuevo se suma al que ya teniamos!!
+            producto.StockDisponible+=stockNuevo;//el stockNuevo se suma al que ya teniamos!!
             ProductoFiles.EscribirProducto(producto);
             resultado.Success=true;
             resultado.Message = "El Stock se Actualizo con Exito";
