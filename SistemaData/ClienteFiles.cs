@@ -42,7 +42,7 @@ namespace SistemaData
             clientes.Add(cliente);
 
             string json = JsonConvert.SerializeObject(clientes, Formatting.Indented);
-            File.WriteAllText($"{cliente}", json);
+            File.WriteAllText(ClienteFile, json);
         }
     }
 }

@@ -42,7 +42,7 @@ namespace SistemaData
             compras.Add(compra);
 
             string json = JsonConvert.SerializeObject(compras, Formatting.Indented);
-            File.WriteAllText($"{compra}", json);
+            File.WriteAllText(CompraFile, json);
         }
     }
 }

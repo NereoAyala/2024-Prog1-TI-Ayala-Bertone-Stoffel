@@ -22,7 +22,7 @@ namespace SistemaServices
                 Nombre = cliente.Nombre,
                 Apellido = cliente.Apellido,
                 Email = cliente.Email,
-                FechaNacimiento = cliente.FechaNacimiento,
+                FechaNacimiento = cliente.FechaNacimiento, // Usar solo la parte de la fecha DATE
                 Telefono = cliente.Telefono
             };
             clientes.Add(clienteNuevo);

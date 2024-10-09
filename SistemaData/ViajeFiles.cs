@@ -38,11 +38,10 @@ namespace SistemaData
                 viajes.RemoveAll(x => x.IdViaje == viaje.IdViaje);
             }
 
-
             viajes.Add(viaje);
 
             string json = JsonConvert.SerializeObject(viajes, Formatting.Indented);
-            File.WriteAllText($"{viaje}", json);
+            File.WriteAllText(ViajeFile, json);
         }
     }
 }

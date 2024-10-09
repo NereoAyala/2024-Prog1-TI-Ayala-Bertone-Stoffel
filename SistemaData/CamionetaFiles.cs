@@ -37,7 +37,7 @@ namespace SistemaData
             camionetas.Add(camioneta);
 
             string json = JsonConvert.SerializeObject(camionetas, Formatting.Indented);
-            File.WriteAllText($"{camioneta}", json);
+            File.WriteAllText(CamionetaFile, json);
         }
     }
 }

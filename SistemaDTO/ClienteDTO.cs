@@ -13,10 +13,10 @@ namespace SistemaDTO
         public string Nombre { get; set; }
         public string Apellido { get; set; }
         public string Email { get; set; }
-        public int Telefono { get; set; }
+        public string Telefono { get; set; }
         public DateTime FechaNacimiento { get; set; }
-        public int Latitud { get; set; }
-        public int Longitud { get; set; }
+        public double Latitud { get; set; }
+        public double Longitud { get; set; }
 
         public void Validar(ResultadoEntity resultado)
         {
@@ -36,13 +36,13 @@ namespace SistemaDTO
             {
                 resultado.Errores.Add("El Email del Cliente No es Valido");
             }
-            if (Telefono <= 0)
+            if (string.IsNullOrEmpty(Telefono))
             {
                 resultado.Errores.Add("El Telefono del Cliente No es Valido");
             }
-            if (FechaNacimiento > DateTime.Now)
+            if (FechaNacimiento > DateTime.Now || FechaNacimiento==DateTime.MinValue)
             {
-                resultado.Errores.Add("La Fecha de Nacimiento no Puede ser Futura");
+                resultado.Errores.Add("La Fecha de Nacimiento no Puede ser Futura y es obligatoria");
             }
         }
     }
