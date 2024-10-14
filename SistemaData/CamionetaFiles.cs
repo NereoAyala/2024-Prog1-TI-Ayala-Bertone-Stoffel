@@ -7,7 +7,7 @@ namespace SistemaData
     {
         private static string CamionetaFile = Path.GetFullPath("Camioneta.json");
 
-        public static List<CamionetaEntity> LeerSuscripcionesDesdeJson()
+        public static List<CamionetaEntity> LeerCamionetasDesdeJson()
         {
             if (File.Exists($"{CamionetaFile}"))
             {
@@ -19,10 +19,9 @@ namespace SistemaData
                 return new List<CamionetaEntity>();
             }
         }
-
-        public static void EscribirSuscripcion(CamionetaEntity camioneta)
+        public static void EscribirCamioneta(CamionetaEntity camioneta)
         {
-            List<CamionetaEntity> camionetas = LeerSuscripcionesDesdeJson();
+            List<CamionetaEntity> camionetas = LeerCamionetasDesdeJson();
 
             if (camioneta.IdCamioneta == 0)
             {

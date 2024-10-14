@@ -21,16 +21,17 @@ namespace SistemaServices
             }
             List<ProductoEntity> productos = ProductoFiles.LeerProductosDesdeJson();
 
-            var ProductoEntity=new ProductoEntity
+            var ProductoEntity = new ProductoEntity
             {
-                Nombre=producto.Nombre,
-                Marca=producto.Marca,
-                AltoCaja=producto.AltoCaja,
+                Nombre = producto.Nombre,
+                Marca = producto.Marca,
+                AltoCaja = producto.AltoCaja,
                 AnchoCaja = producto.AnchoCaja,
                 ProfundidadCaja = producto.ProfundidadCaja,
                 PrecioUnitario = producto.PrecioUnitario,
                 StockDisponible = producto.StockDisponible,
-                StockMinimo = producto.StockMinimo
+                StockMinimo = producto.StockMinimo,
+                FechaCreacion = DateTime.Now
             };
             productos.Add(ProductoEntity);
             ProductoFiles.EscribirProducto(ProductoEntity);
@@ -48,7 +49,8 @@ namespace SistemaServices
                 resultado.Errores.Add("El Producto no se encontro,Ingrese otro ID");
                 return resultado;
             }
-            producto.StockDisponible+=stockNuevo;//el stockNuevo se suma al que ya teniamos!!
+            producto.StockDisponible+=stockNuevo;
+            producto.FechaActualizacion = DateTime.Now;
             ProductoFiles.EscribirProducto(producto);
             resultado.Success=true;
             resultado.Message = "El Stock se Actualizo con Exito";

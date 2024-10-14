@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SistemaEntities
 {
-    public class ViajeEntity
+    public class ViajeEntity : FechaBase
     {
         public int IdViaje { get; set; }
         public int IdCamioneta { get; set; }

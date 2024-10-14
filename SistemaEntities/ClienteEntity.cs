@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SistemaEntities
 {
-    public class ClienteEntity
+    public class ClienteEntity : FechaBase
     {
         public int IdCliente { get; set; }
         public int DniCliente { get; set; }
@@ -17,6 +17,5 @@ namespace SistemaEntities
         public double Latitud { get; set; }
         public double Longitud { get; set; }
         public DateTime FechaNacimiento { get; set; }
-        public DateTime? FechaEliminacion { get; set; }
     }
 }

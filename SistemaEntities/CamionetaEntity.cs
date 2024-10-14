@@ -1,6 +1,6 @@
 ﻿namespace SistemaEntities
 {
-    public class CamionetaEntity
+    public class CamionetaEntity : FechaBase
     {
         public int IdCamioneta { get; set; }
         public string Patente { get; set; }

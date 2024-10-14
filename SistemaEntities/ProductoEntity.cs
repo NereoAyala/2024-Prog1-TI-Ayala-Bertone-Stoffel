@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SistemaEntities
 {
-    public class ProductoEntity
+    public class ProductoEntity : FechaBase
     {
         public int IdProducto { get; set; }
         public string Nombre { get; set; }

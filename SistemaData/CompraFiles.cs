@@ -12,7 +12,7 @@ namespace SistemaData
     {
         private static string CompraFile = Path.GetFullPath("Compra.json");
 
-        public static List<CompraEntity> LeerSuscripcionesDesdeJson()
+        public static List<CompraEntity> LeerCompraDesdeJson()
         {
             if (File.Exists($"{CompraFile}"))
             {
@@ -25,9 +25,9 @@ namespace SistemaData
             }
         }
 
-        public static void EscribirSuscripcion(CompraEntity compra)
+        public static void EscribirCompra(CompraEntity compra)
         {
-            List<CompraEntity> compras = LeerSuscripcionesDesdeJson();
+            List<CompraEntity> compras = LeerCompraDesdeJson();
 
             if (compra.IdCompra == 0)
             {

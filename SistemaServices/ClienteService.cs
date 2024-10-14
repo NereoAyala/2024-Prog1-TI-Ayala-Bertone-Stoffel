@@ -23,7 +23,8 @@ namespace SistemaServices
                 Apellido = cliente.Apellido,
                 Email = cliente.Email,
                 FechaNacimiento = cliente.FechaNacimiento, // Usar solo la parte de la fecha DATE
-                Telefono = cliente.Telefono
+                Telefono = cliente.Telefono,
+                FechaCreacion = DateTime.Now,
             };
             clientes.Add(clienteNuevo);
             ClienteFiles.EscribirClienteaJson(clienteNuevo);
@@ -66,6 +67,7 @@ namespace SistemaServices
             cliente.Email = clienteDTO.Email;
             cliente.Latitud = clienteDTO.Latitud;
             cliente.Longitud = clienteDTO.Longitud;
+            cliente.FechaActualizacion = DateTime.Now;
             ClienteFiles.EscribirClienteaJson(cliente);
             resultado.Success = true;
             resultado.Message = "El Cliente se Actualizo con Exito";

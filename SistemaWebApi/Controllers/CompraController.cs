@@ -1,6 +1,32 @@
-﻿namespace SistemaWebApi.Controllers
+﻿using Microsoft.AspNetCore.Mvc;
+using SistemaDTO;
+using SistemaEntities;
+using SistemaServices;
+
+namespace SistemaWebApi.Controllers
 {
-    public class CompraController
+    public class CompraController : Controller
     {
+        private CompraService compraService = new CompraService();
+        private ResultadoEntity resultado = new ResultadoEntity();
+        public CompraController()
+        {
+            compraService = new CompraService();
+            resultado = new ResultadoEntity();
+        }
+        [HttpPost("AgregarCompra")]
+        public IActionResult AgregarCompra([FromBody] int idCliente, int codProducto, int cantComprada, DateTime fechaEntrega)
+        {
+            resultado = compraService.CrearCompra( idCliente,  codProducto,  cantComprada,  fechaEntrega);
+            if (resultado.Success==true)
+            {
+                return Ok(resultado.Message);
+            }
+            else
+            {
+                return BadRequest(resultado.Errores);
+            }
+        }
     }
 }
+

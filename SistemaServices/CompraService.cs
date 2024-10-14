@@ -16,14 +16,19 @@ namespace SistemaServices
             ResultadoEntity resultado = new ResultadoEntity { Success = false };
             List<ProductoEntity> productos = ProductoFiles.LeerProductosDesdeJson();
             ProductoEntity producto = productos.Find(x=>x.IdProducto == codProducto);
+            List<ClienteEntity> clientes = ClienteFiles.LeerClientesDesdeJson();
+            ClienteEntity cliente = clientes.Find(x => x.IdCliente == idCliente);
+            if (cliente == null) {
+                resultado.Errores.Add("El id del cliente no fue encontrado.");
+            }
             if (producto == null)
             {
-                resultado.Message = "No se encontro el producto.";
+                resultado.Errores.Add("No se encontro el producto.");
                 return resultado;
             }
             if (producto.StockDisponible <= 0)
             {
-                resultado.Message = "No hay stock disponible.";
+                resultado.Errores.Add("No hay stock disponible.");
                 return resultado;
             }
             var monto = producto.StockDisponible*producto.PrecioUnitario;
@@ -31,21 +36,29 @@ namespace SistemaServices
             if (producto.StockDisponible > 4)
             {
                 monto = monto - (monto * 0.25);
-            }
+            }    
+            List<CompraEntity> compras = CompraFiles.LeerCompraDesdeJson();
             CompraEntity compra = new CompraEntity
             {
                 CodProducto = producto.IdProducto,
                 DniCliente = idCliente,
-                FechaCompra = DateTime.Now,
                 CantidadComprado = cantComprada,
                 FechaEntrega = fechaEntrega,
                 EstadoCompra = Enums.EstadoCompra.Open,
-                MontoCompra = monto
+                MontoCompra = monto,
+                FechaCreacion=DateTime.Now,
+                PuntoDestino = new Localizacion()
+                {
+                    LatitudCliente = cliente.Latitud,
+                    LongitudCliente = cliente.Longitud
+                }
             };
-            //FALTA CALCULAR LA UBICACION (PUNTO DESTINO).
+            compras.Add(compra);
+            CompraFiles.EscribirCompra(compra);
             resultado.Success = true;
             resultado.Message = "Compra cargada con exito";
             return resultado;
+            
         }
     }
 }

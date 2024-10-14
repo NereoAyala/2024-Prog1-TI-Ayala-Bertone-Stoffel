@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SistemaEntities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,11 @@ namespace SistemaServices
 {
     internal class ViajeService
     {
-        //QUE LO HAGA DIOS
+        public ResultadoEntity CrearViaje()
+        {
+            var resultado = new ResultadoEntity { Success = false };
+            
+
+        }
     }
 }

@@ -12,7 +12,7 @@ namespace SistemaData
     {
         private static string ViajeFile = Path.GetFullPath("Viaje.json");
 
-        public static List<ViajeEntity> LeerSuscripcionesDesdeJson()
+        public static List<ViajeEntity> LeerViajesDesdeJson()
         {
             if (File.Exists($"{ViajeFile}"))
             {
@@ -25,9 +25,9 @@ namespace SistemaData
             }
         }
 
-        public static void EscribirSuscripcion(ViajeEntity viaje)
+        public static void EscribirViaje(ViajeEntity viaje)
         {
-            List<ViajeEntity> viajes = LeerSuscripcionesDesdeJson();
+            List<ViajeEntity> viajes = LeerViajesDesdeJson();
 
             if (viaje.IdViaje == 0)
             {
