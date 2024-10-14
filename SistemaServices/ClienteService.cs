@@ -89,7 +89,7 @@ namespace SistemaServices
                     Nombre = item.Nombre,
                     Telefono = item.Telefono,
                     FechaNacimiento = item.FechaNacimiento,
-                    DniCliente = item.DniCliente,
+                    DniCliente = item.DniCliente
                 };
                 clienteDTOs.Add(clienteDTO);
             }
