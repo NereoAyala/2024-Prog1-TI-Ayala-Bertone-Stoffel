@@ -9,11 +9,11 @@ namespace SistemaServices
 {
     internal class ViajeService
     {
-        public ResultadoEntity CrearViaje()
-        {
-            var resultado = new ResultadoEntity { Success = false };
+        //public ResultadoEntity CrearViaje()
+        //{
+        //    var resultado = new ResultadoEntity { Success = false };
             
 
-        }
+        //}
     }
 }

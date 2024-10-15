@@ -11,7 +11,7 @@ namespace SistemaWebApi.Controllers
     {
         ProductoService producto=new ProductoService();
 
-        [HttpPost]
+        [HttpPost("AgregarProducto")]
         public IActionResult AgregarProducto([FromBody]ProductoDTO productoDTO) 
         {
             ResultadoEntity resultado = producto.AgregarProducto(productoDTO);
@@ -24,7 +24,7 @@ namespace SistemaWebApi.Controllers
                 return Ok(resultado.Message);
             }
         }
-        [HttpPut]
+        [HttpPut("ActualizarStock")]
         public IActionResult ActualizarStock(int id,int stockNuevo) 
         {
             ResultadoEntity resultado = producto.ActualizarStockProducto(id,stockNuevo);

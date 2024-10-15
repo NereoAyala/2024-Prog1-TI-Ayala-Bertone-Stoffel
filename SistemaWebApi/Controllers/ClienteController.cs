@@ -12,7 +12,7 @@ namespace SistemaWebApi.Controllers
     {
         ClienteService clienteService=new ClienteService();
 
-        [HttpPost]
+        [HttpPost ("AgregarCliente")]
         public IActionResult AgregarCliente([FromBody]ClienteDTO clienteDTO) 
         {
             ResultadoEntity resultado = clienteService.AgregarCliente(clienteDTO);
@@ -25,7 +25,7 @@ namespace SistemaWebApi.Controllers
                 return Ok(resultado.Message);
             }
         }
-        [HttpDelete ]
+        [HttpDelete("EliminarCliente")]
         public IActionResult EliminarCliente(int id) 
         {
             ResultadoEntity resultado = clienteService.EliminarCliente(id);
@@ -38,7 +38,7 @@ namespace SistemaWebApi.Controllers
                 return Ok(resultado.Message);
             }
         }
-        [HttpPut]
+        [HttpPut("ActualizarCliente")]
         public IActionResult ActualizarCliente(int id,[FromBody]ClienteDTO cliente) 
         {
             ResultadoEntity resultado = clienteService.ActualizarCliente(id,cliente);
@@ -51,7 +51,7 @@ namespace SistemaWebApi.Controllers
                 return Ok(resultado.Message);
             }
         }
-        [HttpGet]
+        [HttpGet("ObtenerClientes")]
         public IActionResult ObtenerClientes() 
         {
             List<ClienteDTO>clientes=clienteService.ObtenerListaClientes();
