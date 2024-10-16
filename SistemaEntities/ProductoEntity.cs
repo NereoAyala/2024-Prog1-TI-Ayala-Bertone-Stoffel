@@ -17,5 +17,9 @@ namespace SistemaEntities
         public double PrecioUnitario { get; set; }
         public int StockDisponible { get; set; }
         public int StockMinimo { get; set; }
+        public int CalcularVolumenUnidad()
+        {
+            return AltoCaja * AnchoCaja * ProfundidadCaja;
+        }
     }
 }

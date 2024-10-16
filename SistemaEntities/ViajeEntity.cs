@@ -15,11 +15,6 @@ namespace SistemaEntities
         public int PorcentajeCarga { get; set; }
         public List<int> ListadoCodigosCompras = new List<int>(); //ESTAS COMPRAS DEBEN PASAR A READYTODISPACH
 
-        public void ValidarFecha() { }
-        public void AsignarCamioneta() { } //ESTO VA EN EL SERVICE
-        public void ValidarDistanciaCamioneta() { } //VER DONDE VA  
-
-        public void ValidarCompletitudCamioneta() { }
-        public void ReprogramarCompras() { } //va en service
+       
     }
 }

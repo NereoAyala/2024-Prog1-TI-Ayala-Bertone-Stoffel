@@ -57,8 +57,19 @@ namespace SistemaServices
             CompraFiles.EscribirCompra(compra);
             resultado.Success = true;
             resultado.Message = "Compra cargada con exito";
-            return resultado;
-            
+            return resultado;          
+        }
+        public int VolumenTotal(int codProducto, int cantidad) 
+        {
+            List<ProductoEntity> productos = ProductoFiles.LeerProductosDesdeJson();
+            ProductoEntity producto = productos.FirstOrDefault(x=>x.IdProducto==codProducto);
+            if (producto==null)
+            {
+                return 0;
+            }
+            int volumenparcial = producto.CalcularVolumenUnidad();
+            int volumenTotal = volumenparcial * cantidad;
+            return volumenTotal;
         }
     }
 }

@@ -1,0 +1,30 @@
+[
+  {
+    "IdCliente": 1,
+    "DniCliente": 44231379,
+    "Nombre": "Nereo",
+    "Apellido": "Ayala",
+    "Email": "nereoayala@gmail.com",
+    "Telefono": "3492567890",
+    "Latitud": 0.0,
+    "Longitud": 0.0,
+    "FechaNacimiento": "2002-07-25T11:38:50.378Z",
+    "FechaEliminacion": null,
+    "FechaCreacion": "2024-10-16T08:39:42.151821-03:00",
+    "FechaActualizacion": null
+  },
+  {
+    "IdCliente": 2,
+    "DniCliente": 26319055,
+    "Nombre": "analia",
+    "Apellido": "ramos",
+    "Email": "analiaramos@gmail.com",
+    "Telefono": "3492345678",
+    "Latitud": 0.0,
+    "Longitud": 0.0,
+    "FechaNacimiento": "1987-12-10T11:40:05.738Z",
+    "FechaEliminacion": null,
+    "FechaCreacion": "2024-10-16T08:41:06.2097052-03:00",
+    "FechaActualizacion": null
+  }
+]

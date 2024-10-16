@@ -17,7 +17,6 @@ namespace SistemaDTO
         public int AnchoCaja { get; set; }
         public int ProfundidadCaja { get; set; }
         public int StockMinimo { get; set; }
-
         public void ValidarProducto(ResultadoEntity resultado) 
         {
             if (string.IsNullOrEmpty(Nombre))
