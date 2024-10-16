@@ -55,7 +55,7 @@ namespace SistemaServices
                     EstadoCompra = Enums.EstadoCompra.Open,
                     MontoCompra = monto,
                     FechaCreacion = DateTime.Now,
-                    //TamañoCajaTotal = producto.CalcularVolumenUnidad(),
+                    TamañoCajaTotal = producto.CalcularVolumenUnidad(),
                     PuntoDestino = new Localizacion()
                     {
                         LatitudCliente = cliente.Latitud,
