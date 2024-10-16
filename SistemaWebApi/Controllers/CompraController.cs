@@ -27,6 +27,7 @@ namespace SistemaWebApi.Controllers
                 return BadRequest(resultado.Errores);
             }
         }
+        [HttpGet("ObtenerCompras")]
         public IActionResult ObtenerCompras() {
             List<CompraDTO> compras = compraService.ObtenerCompras();
             return Ok(compras);
