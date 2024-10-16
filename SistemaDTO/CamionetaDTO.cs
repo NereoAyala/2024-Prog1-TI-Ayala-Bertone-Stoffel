@@ -3,7 +3,7 @@
     public class CamionetaDTO
     {
         public string Patente { get; set; }
-        public int TamañoCarga { get; set; }
-        public int DistanciaMax { get; set; }
+        public double TamañoCarga { get; set; }
+        public double DistanciaMax { get; set; }
     }
 }

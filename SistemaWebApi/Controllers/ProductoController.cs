@@ -25,7 +25,7 @@ namespace SistemaWebApi.Controllers
             }
         }
         [HttpPut("ActualizarStock")]
-        public IActionResult ActualizarStock(int id,int stockNuevo) 
+        public IActionResult ActualizarStock(int id,[FromBody]int stockNuevo) 
         {
             ResultadoEntity resultado = producto.ActualizarStockProducto(id,stockNuevo);
             if (resultado.Success==false)

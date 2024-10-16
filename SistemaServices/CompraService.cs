@@ -11,53 +11,80 @@ namespace SistemaServices
 {
     public class CompraService
     {
-        public ResultadoEntity CrearCompra(int idCliente, int codProducto, int cantComprada, DateTime fechaEntrega)
+        public ResultadoEntity CrearCompra(CompraDTO compraDto)
         {
             ResultadoEntity resultado = new ResultadoEntity { Success = false };
+            compraDto.Validacion(resultado);
+            if (resultado.Errores.Count > 0) {
+                resultado.Errores.Add("La compra no es valida.");
+            }
             List<ProductoEntity> productos = ProductoFiles.LeerProductosDesdeJson();
-            ProductoEntity producto = productos.Find(x=>x.IdProducto == codProducto);
-            List<ClienteEntity> clientes = ClienteFiles.LeerClientesDesdeJson();
-            ClienteEntity cliente = clientes.Find(x => x.IdCliente == idCliente);
-            if (cliente == null) {
-                resultado.Errores.Add("El id del cliente no fue encontrado.");
+            var producto = productos.Find(x => x.IdProducto == compraDto.CodProducto);
+            if (producto == null) {
+                resultado.Errores.Add("Producto no encontrado");
             }
-            if (producto == null)
+            else
             {
-                resultado.Errores.Add("No se encontro el producto.");
-                return resultado;
-            }
-            if (producto.StockDisponible <= 0)
-            {
-                resultado.Errores.Add("No hay stock disponible.");
-                return resultado;
-            }
-            var monto = producto.StockDisponible*producto.PrecioUnitario;
-            monto = monto + (monto * 0.21);
-            if (producto.StockDisponible > 4)
-            {
-                monto = monto - (monto * 0.25);
-            }    
-            List<CompraEntity> compras = CompraFiles.LeerCompraDesdeJson();
-            CompraEntity compra = new CompraEntity
-            {
-                CodProducto = producto.IdProducto,
-                DniCliente = idCliente,
-                CantidadComprado = cantComprada,
-                FechaEntrega = fechaEntrega,
-                EstadoCompra = Enums.EstadoCompra.Open,
-                MontoCompra = monto,
-                FechaCreacion=DateTime.Now,
-                PuntoDestino = new Localizacion()
+                if ((producto.StockDisponible - compraDto.CantidadComprado) < 0)
                 {
-                    LatitudCliente = cliente.Latitud,
-                    LongitudCliente = cliente.Longitud
+                    resultado.Errores.Add("No se puede realizar la compra no hay stock");                    
                 }
-            };
-            compras.Add(compra);
-            CompraFiles.EscribirCompra(compra);
-            resultado.Success = true;
-            resultado.Message = "Compra cargada con exito";
-            return resultado;          
+            }
+            List<ClienteEntity> clientes = ClienteFiles.LeerClientesDesdeJson();
+            var cliente = clientes.Find(x => x.DniCliente == compraDto.DniCliente);
+            if (cliente == null)
+            {
+                resultado.Errores.Add("Cliente no encontrado");              
+            }
+            if (resultado.Errores.Count == 0) {
+                var monto = producto.PrecioUnitario * compraDto.CantidadComprado;
+                monto = monto + (monto * 0.21);
+                if (producto.StockDisponible > 4)
+                {
+                    monto = monto - (monto * 0.25);
+                }
+                producto.StockDisponible -= compraDto.CantidadComprado;
+                ProductoFiles.EscribirProducto(producto);
+                List<CompraEntity> compras = CompraFiles.LeerCompraDesdeJson();
+                CompraEntity compra = new CompraEntity
+                {
+                    CodProducto = producto.IdProducto,
+                    DniCliente = compraDto.DniCliente,
+                    CantidadComprado = compraDto.CantidadComprado,
+                    FechaEntrega = compraDto.FechaEntrega,
+                    EstadoCompra = Enums.EstadoCompra.Open,
+                    MontoCompra = monto,
+                    FechaCreacion = DateTime.Now,
+                    //TamañoCajaTotal = producto.CalcularVolumenUnidad(),
+                    PuntoDestino = new Localizacion()
+                    {
+                        LatitudCliente = cliente.Latitud,
+                        LongitudCliente = cliente.Longitud
+                    }
+                };
+                compras.Add(compra);
+                CompraFiles.EscribirCompra(compra);
+                resultado.Success = true;
+                resultado.Message = "Compra cargada con exito";
+            }
+            return resultado;
+        }
+        public List<CompraDTO> ObtenerCompras()
+        {
+            List<CompraEntity> compras = CompraFiles.LeerCompraDesdeJson();
+            List<CompraDTO> compraDTOs = new List<CompraDTO>();
+            foreach (CompraEntity compra in compras)
+            {
+                CompraDTO compraDto = new CompraDTO()
+                {
+                    CantidadComprado = compra.CantidadComprado,
+                    DniCliente = compra.DniCliente,
+                    CodProducto = compra.CodProducto,
+                    FechaEntrega = compra.FechaEntrega,
+                };
+                compraDTOs.Add(compraDto);
+            }
+            return compraDTOs;
         }
         public int VolumenTotal(int codProducto, int cantidad) 
         {

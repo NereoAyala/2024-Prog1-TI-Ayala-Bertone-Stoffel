@@ -15,9 +15,9 @@ namespace SistemaWebApi.Controllers
             resultado = new ResultadoEntity();
         }
         [HttpPost("AgregarCompra")]
-        public IActionResult AgregarCompra([FromBody] int idCliente, int codProducto, int cantComprada, DateTime fechaEntrega)
+        public IActionResult AgregarCompra([FromBody] CompraDTO compraDto)
         {
-            resultado = compraService.CrearCompra( idCliente,  codProducto,  cantComprada,  fechaEntrega);
+            resultado = compraService.CrearCompra(compraDto);
             if (resultado.Success==true)
             {
                 return Ok(resultado.Message);
@@ -26,6 +26,10 @@ namespace SistemaWebApi.Controllers
             {
                 return BadRequest(resultado.Errores);
             }
+        }
+        public IActionResult ObtenerCompras() {
+            List<CompraDTO> compras = compraService.ObtenerCompras();
+            return Ok(compras);
         }
     }
 }

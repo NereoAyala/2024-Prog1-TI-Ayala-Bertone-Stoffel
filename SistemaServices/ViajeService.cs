@@ -17,6 +17,7 @@ namespace SistemaServices
             viaje.Validar(resultado);
             if (resultado.Errores.Count()>0)
             {
+                resultado.Message = "Error al cargar el viaje";
                 return resultado;
             }
             List<ViajeEntity> viajes = ViajeFiles.LeerViajesDesdeJson();
@@ -33,9 +34,23 @@ namespace SistemaServices
             List<CompraEntity> compras = CompraFiles.LeerCompraDesdeJson();
             List<CamionetaEntity> camionetas = CamionetaFiles.LeerCamionetasDesdeJson();
             var comprasfiltradas = compras.Where(x=>x.EstadoCompra==Enums.EstadoCompra.Open).ToList();//filtro las compras para tener solo las que estan en estado OPEN
-            foreach (var item in camionetas)
+            foreach (var camio in camionetas)
             {
-                
+                foreach (var compra in comprasfiltradas)
+                {
+                    var distancia = compra.ObtenerDistancia();
+                    double capacidad = compra.TamañoCajaTotal * compra.CantidadComprado;
+                    if (camio.DistanciaMax < distancia || camio.TamañoCarga > capacidad) {
+
+                        ViajeEntity viajeTemp = new ViajeEntity()
+                        {
+                            FechaCreacion = DateTime.Now,
+                            FechaEntregaDesde = viaje.FechaEntregaDesde,
+                            FechaEntregaHasta = viaje.FechaEntregaHasta,
+                        };
+                        camio.TamañoCarga -= capacidad;
+                    }
+                }
             }
         }
     }
