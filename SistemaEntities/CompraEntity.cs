@@ -16,7 +16,7 @@ namespace SistemaEntities
         public Enums.EstadoCompra EstadoCompra { get; set; }
         public double MontoCompra { get; set; }
         public Localizacion PuntoDestino { get; set; }
-        public double TamañoCajaTotal { get; set; }
+        public double TamañoCajaTotal { get; set; } 
         public double ObtenerDistancia()
         {
             double latitudLocal = -31.25033;

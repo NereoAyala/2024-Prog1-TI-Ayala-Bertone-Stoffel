@@ -86,17 +86,17 @@ namespace SistemaServices
             }
             return compraDTOs;
         }
-        public int VolumenTotal(int codProducto, int cantidad) 
-        {
-            List<ProductoEntity> productos = ProductoFiles.LeerProductosDesdeJson();
-            ProductoEntity producto = productos.FirstOrDefault(x=>x.IdProducto==codProducto);
-            if (producto==null)
-            {
-                return 0;
-            }
-            int volumenparcial = producto.CalcularVolumenUnidad();
-            int volumenTotal = volumenparcial * cantidad;
-            return volumenTotal;
-        }
+        //public int VolumenTotal(int codProducto, int cantidad) 
+        //{
+        //    List<ProductoEntity> productos = ProductoFiles.LeerProductosDesdeJson();
+        //    ProductoEntity producto = productos.FirstOrDefault(x=>x.IdProducto==codProducto);
+        //    if (producto==null)
+        //    {
+        //        return 0;
+        //    }
+        //    int volumenparcial = producto.CalcularVolumenUnidad();
+        //    int volumenTotal = volumenparcial * cantidad;
+        //    return volumenTotal;
+        //} NO LO USAMOS BORRAR ANTES DE ENTREGAR AL FINAL PUSIMOS TAMAÑOCAJATOTAL COMO ATRIBUTO
     }
 }
