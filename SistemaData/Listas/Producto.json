@@ -1,0 +1,16 @@
+[
+  {
+    "IdProducto": 1,
+    "Nombre": "PureTomate",
+    "Marca": "Marolio",
+    "AltoCaja": 10,
+    "AnchoCaja": 10,
+    "ProfundidadCaja": 10,
+    "PrecioUnitario": 2000.0,
+    "StockDisponible": 5,
+    "StockMinimo": 5,
+    "FechaEliminacion": null,
+    "FechaCreacion": "2024-10-18T08:48:25.2901153-03:00",
+    "FechaActualizacion": "2024-10-18T09:40:43.7977408-03:00"
+  }
+]

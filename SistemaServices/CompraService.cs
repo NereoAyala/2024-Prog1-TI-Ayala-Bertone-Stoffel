@@ -27,7 +27,7 @@ namespace SistemaServices
             {
                 if ((producto.StockDisponible - compraDto.CantidadComprado) < 0)
                 {
-                    resultado.Errores.Add("No se puede realizar la compra no hay stock");                    
+                    resultado.Errores.Add("No se puede realizar la compra no hay stock suficiente");                    
                 }
             }
             List<ClienteEntity> clientes = ClienteFiles.LeerClientesDesdeJson();
@@ -58,8 +58,8 @@ namespace SistemaServices
                     TamañoCajaTotal = producto.CalcularVolumenUnidad() * compraDto.CantidadComprado,
                     PuntoDestino = new Localizacion()
                     {
-                        LatitudCliente = cliente.Latitud,
-                        LongitudCliente = cliente.Longitud
+                        LatitudCliente = cliente.localizacionCliente.LatitudCliente,
+                        LongitudCliente = cliente.localizacionCliente.LongitudCliente,
                     }
                 };
                 compras.Add(compra);

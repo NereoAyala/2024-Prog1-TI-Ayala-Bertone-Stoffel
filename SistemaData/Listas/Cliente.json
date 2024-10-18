@@ -5,26 +5,14 @@
     "Nombre": "Nereo",
     "Apellido": "Ayala",
     "Email": "nereoayala@gmail.com",
-    "Telefono": "3492567890",
-    "Latitud": 0.0,
-    "Longitud": 0.0,
-    "FechaNacimiento": "2002-07-25T11:38:50.378Z",
+    "Telefono": "3492655505",
+    "localizacionCliente": {
+      "LatitudCliente": 1000.0,
+      "LongitudCliente": 1000.0
+    },
+    "FechaNacimiento": "2002-07-25T12:20:27.365Z",
     "FechaEliminacion": null,
-    "FechaCreacion": "2024-10-16T08:39:42.151821-03:00",
-    "FechaActualizacion": null
-  },
-  {
-    "IdCliente": 2,
-    "DniCliente": 26319055,
-    "Nombre": "analia",
-    "Apellido": "ramos",
-    "Email": "analiaramos@gmail.com",
-    "Telefono": "3492345678",
-    "Latitud": 0.0,
-    "Longitud": 0.0,
-    "FechaNacimiento": "1987-12-10T11:40:05.738Z",
-    "FechaEliminacion": null,
-    "FechaCreacion": "2024-10-16T08:41:06.2097052-03:00",
+    "FechaCreacion": "2024-10-18T09:21:11.8155139-03:00",
     "FechaActualizacion": null
   }
 ]

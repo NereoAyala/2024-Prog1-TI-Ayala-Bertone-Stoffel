@@ -14,8 +14,7 @@ namespace SistemaEntities
         public string Apellido { get; set; }
         public string Email { get; set; }
         public string Telefono { get; set; }
-        public double Latitud { get; set; }
-        public double Longitud { get; set; }
+        public Localizacion localizacionCliente { get; set; }
         public DateTime FechaNacimiento { get; set; }
     }
 }

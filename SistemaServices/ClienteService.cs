@@ -25,6 +25,11 @@ namespace SistemaServices
                 FechaNacimiento = cliente.FechaNacimiento, // Usar solo la parte de la fecha DATE
                 Telefono = cliente.Telefono,
                 FechaCreacion = DateTime.Now,
+                localizacionCliente=new Localizacion 
+                {
+                    LatitudCliente=cliente.Latitud,
+                    LongitudCliente= cliente.Longitud,
+                }
             };
             clientes.Add(clienteNuevo);
             ClienteFiles.EscribirClienteaJson(clienteNuevo);
@@ -65,8 +70,11 @@ namespace SistemaServices
             cliente.Nombre = clienteDTO.Nombre;
             cliente.Apellido = clienteDTO.Apellido;
             cliente.Email = clienteDTO.Email;
-            cliente.Latitud = clienteDTO.Latitud;
-            cliente.Longitud = clienteDTO.Longitud;
+            cliente.localizacionCliente = new Localizacion()
+            {
+                LatitudCliente = clienteDTO.Latitud,
+                LongitudCliente = clienteDTO.Longitud,
+            };
             cliente.FechaActualizacion = DateTime.Now;
             ClienteFiles.EscribirClienteaJson(cliente);
             resultado.Success = true;
@@ -84,8 +92,8 @@ namespace SistemaServices
                 {
                     Apellido = item.Apellido,
                     Email = item.Email,
-                    Latitud = item.Latitud,
-                    Longitud = item.Longitud,
+                    Latitud=item.localizacionCliente.LatitudCliente,
+                    Longitud=item.localizacionCliente.LongitudCliente,
                     Nombre = item.Nombre,
                     Telefono = item.Telefono,
                     FechaNacimiento = item.FechaNacimiento,

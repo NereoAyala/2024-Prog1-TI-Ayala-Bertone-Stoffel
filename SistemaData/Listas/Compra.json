@@ -1,0 +1,19 @@
+[
+  {
+    "IdCompra": 1,
+    "CodProducto": 1,
+    "DniCliente": 44231379,
+    "CantidadComprado": 10,
+    "FechaEntrega": "2024-10-18T12:40:01.096Z",
+    "EstadoCompra": 1,
+    "MontoCompra": 18150.0,
+    "PuntoDestino": {
+      "LatitudCliente": 1000.0,
+      "LongitudCliente": 1000.0
+    },
+    "TamañoCajaTotal": 10000.0,
+    "FechaEliminacion": null,
+    "FechaCreacion": "2024-10-18T09:40:59.5935971-03:00",
+    "FechaActualizacion": null
+  }
+]
