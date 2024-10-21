@@ -1,0 +1,73 @@
+@ -0,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Stylesheet.css">
+    <title>Trabajo Integrador</title>
+</head>
+
+<body>
+    <div class="contenedor">
+        <header>
+            <div class="logo">
+                <h1> Gestión de compras y envíos </h1>
+            </div>
+            <nav class="navbar">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="Cliente.html">Cliente</a> </li>
+                    <li><a href="Contacto.html">Contacto</a></li>
+                </ul>
+            </nav>
+        </header>
+
+    </div>
+    <div class="main-form">
+
+        <form action="js/AgregarCliente.js" method="POST" id="clienteForm">
+            <h3>CLIENTES</h3>
+            <input type="number" id="dni" name="dni" required placeholder="DNI Cliente">
+            <input type="text" id="nombre" name="nombre" required placeholder="Nombre Cliente">
+            <input type="text" id="apellido" name="apellido" required placeholder="Apellido Cliente">
+            <input type="email" id="email" name="email" required placeholder="Email">
+            <input type="number" id="telefono" name="telefono" required placeholder="Telefono Cliente">
+
+            <input type="number" id="latitud" name="latitud" required placeholder="Latitud">
+            <input type="number" id="longitud" name="longitud" required placeholder="Longitud">
+
+            <label for="fecha_nacimiento">Fecha de Nacimiento:</label>
+            <input type="date" id="fecha_nacimiento" name="fecha_nacimiento">
+
+            <input type="submit" value="Agregar Cliente" class="btn-submit">
+        </form>
+
+    </div>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>DNI</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Email</th>
+                <th>Telefono</th>
+                <th>Latitud</th>
+                <th>Longitud</th>
+            </tr>
+        </thead>
+        <tbody id="TablaClientes">
+            
+        </tbody>
+    </table>
+
+
+    <footer>
+        <p> &copy; UCSE 2024 </p>
+    </footer>
+    <script src="js/AgregarCliente.js"></script>
+</body>
+
+</html>

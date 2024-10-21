@@ -1,0 +1,289 @@
+
+/* General */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #ffffff;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    overflow: hidden;
+    overflow-y: auto;
+
+    min-height: 100vh;
+}
+
+body {
+    background-image: url('https://cdn.wallpapersafari.com/31/74/oDYvjf.jpg');
+    /*background-repeat: no-repeat;*/
+    background-size: cover;
+}
+
+/* Encabezado */
+header {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(230, 237, 237, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 5px;
+}
+
+/* Pie de página */
+footer {
+    color: #ffffff;
+    text-align: center;
+    padding: 5px;
+    width: 100%;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.5);
+    bottom: 0;
+    margin-top: auto;
+    position: relative;
+    margin-top: auto;
+    background: rgba(230, 237, 237, 0.1);
+    backdrop-filter: blur(10px);
+}
+
+header h1 {
+    margin: 5px;
+}
+
+/* Navegación */
+.navbar ul {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+}
+
+.navbar ul li {
+    display: inline-block;
+    margin: 0 15px;
+}
+
+.navbar a {
+    color: #fff;
+    text-decoration: none;
+    position: relative;
+    padding: 5px 0;
+    transition: color 0.3s ease;
+    font-weight: bold;
+}
+
+.navbar a:hover {
+    color:#30dcd7;
+}
+
+.navbar a:hover::after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 3px;
+    background: #30dcd7;
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+}
+
+/* Sección Principal */
+.main {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+    padding: 20px;
+    text-align: center;
+    gap: 10px;
+    margin-bottom: 50px;
+  
+}
+
+/* Cajas */
+.box {
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 15%;
+    height: 70%;
+    transition: transform 0.3s;
+    box-shadow: inset;
+}
+
+.box:hover {
+    transform: scale(1.05);
+    /* Efecto al pasar el mouse */
+}
+
+/* Botones */
+.boton {
+    background: rgba(230, 237, 237, 0.1);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 20px rgba(51, 53, 53, 0.5);
+    border: none;
+    color: #ffffff;
+    padding: 0;
+    font-size: 1.2em;
+    font-weight: bold;
+    border-radius: 20px;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.boton:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(209, 212, 212, 0.5);
+}
+
+/* Enlace dentro del botón */
+.boton a {
+    text-decoration: none;
+    color: inherit;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+/*Formulario*/
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 70%;
+    margin: 30px 10px;
+    padding: 20px;
+    flex-grow: 1;
+    background: rgba(230, 237, 237, 0.1);
+    backdrop-filter: blur(15px);
+    max-height: fit-content;
+    box-sizing: border-box;
+    font-size: 15px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    overflow-y: auto;
+}
+
+input,
+textarea {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    width: 50%;
+    margin: 0 10px;
+    display: flex;
+    background: rgba(230, 237, 237, 0.1);
+    backdrop-filter: blur(10px);
+    /* Filtro de desenfoque */
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: #ffffff;
+}
+
+input[type="submit"] {
+    border: none;
+    color: #ffffff;
+    padding: 15px;
+    font-size: 1.2em;
+    font-weight: bold;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 30%;
+    margin: 0 auto;
+    /* Centra el botón */
+    margin-top: 15px;
+    background: rgba(230, 237, 237, 0.1);
+    backdrop-filter: blur(10px);
+    /* Filtro de desenfoque */
+    display: flex;
+}
+
+input[type="submit"]:hover {
+    box-shadow: 0 4px 20px rgb(154, 156, 156);
+    background:#30dcd7;
+    transform: translateY(-2px);
+}
+
+.main-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+   
+}
+
+
+/*hacer responsive toda la pagina*/
+@media screen and (max-width: 768px) {
+    .main {
+        flex-direction: column;
+    }
+
+    .box {
+        width: 50%;
+    }
+
+    form {
+        width: 90%;
+    }
+
+    input,
+    textarea {
+        width: 90%;
+    }
+
+    input[type="submit"] {
+        width: 50%;
+    }
+
+    .main-form {
+        width: 100%;
+    }
+
+    .navbar ul li {
+        margin: 0 10px;
+    }
+
+    .navbar a {
+        font-size: 0.8em;
+    }
+
+    footer {
+        font-size: 0.8em;
+    }
+
+    .box {
+        width: 50%;
+    }
+
+    .main {
+        padding: 10px;
+    }
+
+    .main-form {
+        padding: 10px;
+    }
+
+}
