@@ -56,5 +56,55 @@ namespace SistemaServices
             resultado.Message = "El Stock se Actualizo con Exito";
             return resultado;
         }
+
+        public List<ProductoDTO> ObtenerListaProductos()
+        {
+            List<ProductoEntity> productos = ProductoFiles.LeerProductosDesdeJson();
+            List<ProductoDTO> productosDTO = new List<ProductoDTO>();
+            foreach (var producto in productos)
+            {
+                ProductoDTO productoDTO = new ProductoDTO
+                {
+                    
+                    Nombre = producto.Nombre,
+                    Marca = producto.Marca,
+                    AltoCaja = producto.AltoCaja,
+                    AnchoCaja = producto.AnchoCaja,
+                    ProfundidadCaja = producto.ProfundidadCaja,
+                    PrecioUnitario = producto.PrecioUnitario,
+                    StockDisponible = producto.StockDisponible,
+                    StockMinimo = producto.StockMinimo,
+                    
+                };
+                productosDTO.Add(productoDTO);
+            }
+            return productosDTO;
+        }
+
+        //hacer que se pueda filtrar los productos por la cantidad de stock ingresando un numero limite
+        public List<ProductoDTO> FiltrarProductosPorStock(int stock)
+        {
+            List<ProductoEntity> productos = ProductoFiles.LeerProductosDesdeJson();
+            List<ProductoDTO> productosDTO = new List<ProductoDTO>();
+            foreach (var producto in productos)
+            {
+                if (producto.StockDisponible <= stock)
+                {
+                    ProductoDTO productoDTO = new ProductoDTO
+                    {
+                        Nombre = producto.Nombre,
+                        Marca = producto.Marca,
+                        AltoCaja = producto.AltoCaja,
+                        AnchoCaja = producto.AnchoCaja,
+                        ProfundidadCaja = producto.ProfundidadCaja,
+                        PrecioUnitario = producto.PrecioUnitario,
+                        StockDisponible = producto.StockDisponible,
+                        StockMinimo = producto.StockMinimo,
+                    };
+                    productosDTO.Add(productoDTO);
+                }
+            }
+            return productosDTO;
+        }
     }
 }

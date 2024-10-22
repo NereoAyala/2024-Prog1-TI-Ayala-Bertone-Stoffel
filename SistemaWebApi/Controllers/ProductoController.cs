@@ -37,6 +37,27 @@ namespace SistemaWebApi.Controllers
                 return Ok(resultado.Message);
             }
         }
-        //todo Una página para ver los productos que tengan un stock menor a su límite configurado.
+
+        //hacer un metodo para obtener todos los productos
+        //[HttpGet("ObtenerProductos")]
+        //public IActionResult ObtenerProductos()
+        //{
+        //    List<ProductoDTO> productos = producto.ObtenerListaProductos();
+        //    return Ok(productos);
+        //}
+
+        //obtener producto segun el filtro
+        [HttpGet("FiltrarProductos")]
+        public IActionResult FiltrarProductos([FromQuery] int limite)
+        {
+            //hacer que se muestren los productos con stock menor o igual al limite
+            List<ProductoDTO> productos = producto.FiltrarProductosPorStock(limite);
+            return Ok(productos);
+
+        }
+
+
+
+
     }
 }

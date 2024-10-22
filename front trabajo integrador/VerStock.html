@@ -25,23 +25,37 @@
         </header>
     </div>
     <div class="main-form">
-        
-        <form id="formulario-actualizar-stock">
-            <form action="VerStock.php" method="GET">
-                <h3>CANTIDAD DE STOCK</h3>
-               <input type="text" id="id" name="id" required  placeholder="ID producto">
-               
-                <input type="text" id="nombre" name="nombre" required placeholder="Nombre producto">
-              
-                <input type="number" id="stock" name="stock" required placeholder="Cantidad Limite">
-                <input type="submit" value="Obtener datos">
-            </form>
+
+
+        <form action="js/VerStock.js" method="GET" id="VerStock">
+            <h3>CANTIDAD DE STOCK</h3>
+            <label for="limiteStock">Ingrese el límite de stock:</label>
+            <input type="number" id="limiteStock" placeholder="Límite de stock">
+
+            <input type="submit" value="Obtener datos">
         </form>
+            <table border="1">
+                <thead>
+                    <tr>
+
+                        <th>Nombre</th>
+                        <th>Stock Disponible</th>
+                        <th>Stock Minimo</th>
+                    </tr>
+                </thead>
+                <tbody id="TablaStock">
+
+                </tbody>
+            </table>
+           
+        </form>
+
     </div>
+    <script src="js/VerStock.js"></script>
     <footer>
         <p> &copy; UCSE 2024 </p>
     </footer>
-    
+
 
 </body>
 
