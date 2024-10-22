@@ -37,5 +37,6 @@ namespace SistemaWebApi.Controllers
                 return Ok(resultado.Message);
             }
         }
+        //todo Una página para ver los productos que tengan un stock menor a su límite configurado.
     }
 }

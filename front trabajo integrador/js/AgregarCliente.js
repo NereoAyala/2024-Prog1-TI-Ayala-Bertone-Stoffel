@@ -37,7 +37,15 @@ document.getElementById('clienteForm').addEventListener('submit', function (even
         body: JSON.stringify(datos)
     })
 
-        .then(response => response.json())
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+       
+        alert(data.mensaje);
+    })
+    .catch(error => {
+        console.log('Error:', error);
+    });
         
                
 

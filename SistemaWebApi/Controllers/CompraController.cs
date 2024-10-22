@@ -20,7 +20,7 @@ namespace SistemaWebApi.Controllers
             resultado = compraService.CrearCompra(compraDto);
             if (resultado.Success==true)
             {
-                return Ok(resultado.Message);
+                return Ok(resultado.Message);//TO DO ARREGLAR
             }
             else
             {
