@@ -16,9 +16,6 @@ namespace SistemaServices
         {
             ResultadoEntity resultado = new ResultadoEntity { Success = false };
             compraDto.Validacion(resultado);
-            if (resultado.Errores.Count > 0) {
-                resultado.Errores.Add("La compra no es valida.");
-            }
             List<ProductoEntity> productos = ProductoFiles.LeerProductosDesdeJson();
             var producto = productos.Find(x => x.IdProducto == compraDto.CodProducto);
             if (producto == null) {

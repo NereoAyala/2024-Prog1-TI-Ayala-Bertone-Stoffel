@@ -28,7 +28,7 @@ namespace SistemaDTO
             }
             if (FechaEntrega <= DateTime.Now)
             {
-                resultado.Errores.Add("La fecha de entrega no no es valida.");
+                resultado.Errores.Add("La fecha de entrega no es valida.");
             }
         }
     }
