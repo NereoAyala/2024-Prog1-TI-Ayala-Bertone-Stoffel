@@ -1,33 +1,5 @@
 [
   {
-    "IdProducto": 1,
-    "Nombre": "PureTomate",
-    "Marca": "Marolio",
-    "AltoCaja": 10,
-    "AnchoCaja": 10,
-    "ProfundidadCaja": 10,
-    "PrecioUnitario": 2000.0,
-    "StockDisponible": 5,
-    "StockMinimo": 5,
-    "FechaEliminacion": null,
-    "FechaCreacion": "2024-10-18T08:48:25.2901153-03:00",
-    "FechaActualizacion": "2024-10-18T09:40:43.7977408-03:00"
-  },
-  {
-    "IdProducto": 2,
-    "Nombre": "cepillo",
-    "Marca": "colgate",
-    "AltoCaja": 10,
-    "AnchoCaja": 10,
-    "ProfundidadCaja": 10,
-    "PrecioUnitario": 100.0,
-    "StockDisponible": 2,
-    "StockMinimo": 1,
-    "FechaEliminacion": null,
-    "FechaCreacion": "2024-10-21T22:59:23.8678608-03:00",
-    "FechaActualizacion": null
-  },
-  {
     "IdProducto": 3,
     "Nombre": "tv",
     "Marca": "apple",
@@ -54,5 +26,33 @@
     "FechaEliminacion": null,
     "FechaCreacion": "2024-10-21T23:00:37.6112159-03:00",
     "FechaActualizacion": null
+  },
+  {
+    "IdProducto": 1,
+    "Nombre": "PureTomate",
+    "Marca": "Marolio",
+    "AltoCaja": 10,
+    "AnchoCaja": 10,
+    "ProfundidadCaja": 10,
+    "PrecioUnitario": 2000.0,
+    "StockDisponible": 89,
+    "StockMinimo": 5,
+    "FechaEliminacion": null,
+    "FechaCreacion": "2024-10-18T08:48:25.2901153-03:00",
+    "FechaActualizacion": "2024-10-22T01:08:43.2442044-03:00"
+  },
+  {
+    "IdProducto": 2,
+    "Nombre": "cepillo",
+    "Marca": "colgate",
+    "AltoCaja": 10,
+    "AnchoCaja": 10,
+    "ProfundidadCaja": 10,
+    "PrecioUnitario": 100.0,
+    "StockDisponible": 7,
+    "StockMinimo": 1,
+    "FechaEliminacion": null,
+    "FechaCreacion": "2024-10-21T22:59:23.8678608-03:00",
+    "FechaActualizacion": "2024-10-22T01:09:31.5959024-03:00"
   }
 ]

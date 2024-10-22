@@ -20,11 +20,13 @@ namespace SistemaWebApi.Controllers
             resultado = compraService.CrearCompra(compraDto);
             if (resultado.Success==true)
             {
-                return Ok(resultado.Message);//TO DO ARREGLAR
+                var respuesta = new { mensaje = resultado.Message };
+                return Json(respuesta);
             }
             else
             {
-                return BadRequest(resultado.Errores);
+                var respuesta = new { mensaje = resultado.Errores };
+                return Json(respuesta);
             }
         }
         [HttpGet("ObtenerCompras")]

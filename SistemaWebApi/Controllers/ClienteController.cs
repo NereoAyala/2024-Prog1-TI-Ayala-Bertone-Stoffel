@@ -18,11 +18,13 @@ namespace SistemaWebApi.Controllers
             ResultadoEntity resultado = clienteService.AgregarCliente(clienteDTO);
             if (resultado.Success==false)
             {
-                return BadRequest(resultado.Errores);
+                var respuesta = new { mensaje = resultado.Errores };
+                return Json(respuesta);
             }
             else
             {
-                return Ok(resultado.Message);
+                var respuesta = new { mensaje = resultado.Message };
+                return Json(respuesta);
             }
         }
         [HttpDelete("EliminarCliente")]
@@ -31,11 +33,13 @@ namespace SistemaWebApi.Controllers
             ResultadoEntity resultado = clienteService.EliminarCliente(id);
             if (resultado.Success==false)
             {
-                return BadRequest(resultado.Errores);
+                var respuesta = new { mensaje = resultado.Errores };
+                return Json(respuesta);
             }
             else
             {
-                return Ok(resultado.Message);
+                var respuesta = new { mensaje = resultado.Message };
+                return Json(respuesta);
             }
         }
         [HttpPut("ActualizarCliente")]
@@ -44,11 +48,13 @@ namespace SistemaWebApi.Controllers
             ResultadoEntity resultado = clienteService.ActualizarCliente(id,cliente);
             if (resultado.Success==false)
             {
-                return BadRequest(resultado.Errores);
+                var respuesta = new { mensaje = resultado.Errores };
+                return Json(respuesta);
             }
             else
             {
-                return Ok(resultado.Message);
+                var respuesta = new { mensaje = resultado.Message };
+                return Json(respuesta);
             }
         }
         [HttpGet("ObtenerClientes")]

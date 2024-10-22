@@ -17,11 +17,13 @@ namespace SistemaWebApi.Controllers
             ResultadoEntity resultado = producto.AgregarProducto(productoDTO);
             if (resultado.Success==false)
             {
-                return BadRequest(resultado.Errores);
+                var respuesta = new { mensaje = resultado.Errores };
+                return Json(respuesta);
             }
             else
             {
-                return Ok(resultado.Message);
+                var respuesta = new { mensaje = resultado.Message };
+                return Json(respuesta);
             }
         }
         [HttpPut("ActualizarStock/{id}")]
@@ -30,11 +32,13 @@ namespace SistemaWebApi.Controllers
             ResultadoEntity resultado = producto.ActualizarStockProducto(id,stockNuevo);
             if (resultado.Success==false)
             {
-                return BadRequest(resultado.Errores);
+                var respuesta = new { mensaje = resultado.Errores };
+                return Json(respuesta);
             }
             else
             {
-                return Ok(resultado.Message);
+               var respuesta = new { mensaje = resultado.Message };
+                return Json(respuesta);
             }
         }
 

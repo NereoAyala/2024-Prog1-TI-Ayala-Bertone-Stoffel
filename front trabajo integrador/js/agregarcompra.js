@@ -1,20 +1,22 @@
 
-document.getElementById('cargar-compra-form').addEventListener('submit', function(event) {
+document.getElementById('compraForm').addEventListener('submit', function(event) {
     event.preventDefault();
 
     const id = document.getElementById('id').value;
     const cantidad = document.getElementById('cantidad').value;
+    const dni = document.getElementById('dni').value;
     const fecha = document.getElementById('fecha_entrega').value;
 
     console.log('Datos obtenidos:', id, cantidad, fecha);
 
     const datos = {
-        id: id,
-        cantidad: cantidad,
-        fecha_entrega: fecha
+        CodProducto: id,
+        CantidadComprado: cantidad,
+        DniCliente: dni,
+        FechaEntrega: fecha
     };
 
-    fetch('http://localhost:5247/Compra/AgregarCompra', {
+    fetch('http://localhost:5247/AgregarCompra', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

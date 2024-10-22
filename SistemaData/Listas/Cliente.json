@@ -14,5 +14,21 @@
     "FechaEliminacion": null,
     "FechaCreacion": "2024-10-18T09:21:11.8155139-03:00",
     "FechaActualizacion": null
+  },
+  {
+    "IdCliente": 2,
+    "DniCliente": 44023896,
+    "Nombre": "pepe",
+    "Apellido": "argento",
+    "Email": "pepe@gmail.com",
+    "Telefono": "234421",
+    "localizacionCliente": {
+      "LatitudCliente": 343849.0,
+      "LongitudCliente": 234567.0
+    },
+    "FechaNacimiento": "2002-05-21T00:00:00",
+    "FechaEliminacion": null,
+    "FechaCreacion": "2024-10-22T00:48:42.6328855-03:00",
+    "FechaActualizacion": null
   }
 ]

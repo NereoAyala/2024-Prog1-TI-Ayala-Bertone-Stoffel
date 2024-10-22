@@ -15,5 +15,39 @@
     "FechaEliminacion": null,
     "FechaCreacion": "2024-10-18T09:40:59.5935971-03:00",
     "FechaActualizacion": null
+  },
+  {
+    "IdCompra": 2,
+    "CodProducto": 1,
+    "DniCliente": 44023896,
+    "CantidadComprado": 1,
+    "FechaEntrega": "2024-10-30T00:00:00",
+    "EstadoCompra": 1,
+    "MontoCompra": 1815.0,
+    "PuntoDestino": {
+      "LatitudCliente": 343849.0,
+      "LongitudCliente": 234567.0
+    },
+    "TamañoCajaTotal": 1000.0,
+    "FechaEliminacion": null,
+    "FechaCreacion": "2024-10-22T00:49:19.2173388-03:00",
+    "FechaActualizacion": null
+  },
+  {
+    "IdCompra": 3,
+    "CodProducto": 2,
+    "DniCliente": 44023896,
+    "CantidadComprado": 15,
+    "FechaEntrega": "2024-10-31T00:00:00",
+    "EstadoCompra": 1,
+    "MontoCompra": 1361.25,
+    "PuntoDestino": {
+      "LatitudCliente": 343849.0,
+      "LongitudCliente": 234567.0
+    },
+    "TamañoCajaTotal": 15000.0,
+    "FechaEliminacion": null,
+    "FechaCreacion": "2024-10-22T01:10:21.9769648-03:00",
+    "FechaActualizacion": null
   }
 ]
