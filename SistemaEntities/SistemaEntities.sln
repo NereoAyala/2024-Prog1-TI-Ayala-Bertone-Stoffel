@@ -3,15 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34701.34
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SistemaEntities", "SistemaEntities.csproj", "{AF939D9B-4F26-470A-AD14-47E8EB1C7549}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SistemaEntities", "SistemaEntities.csproj", "{AF939D9B-4F26-470A-AD14-47E8EB1C7549}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SistemaDTO", "..\SistemaDTO\SistemaDTO.csproj", "{F17BD959-9F02-4242-8CE0-CE533C932672}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SistemaDTO", "..\SistemaDTO\SistemaDTO.csproj", "{F17BD959-9F02-4242-8CE0-CE533C932672}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SistemaData", "..\SistemaData\SistemaData.csproj", "{483EAC88-81DF-475E-9CDD-9E3BB517D486}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SistemaData", "..\SistemaData\SistemaData.csproj", "{483EAC88-81DF-475E-9CDD-9E3BB517D486}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SistemaServices", "..\SistemaServices\SistemaServices.csproj", "{1266AAD8-DDB0-40FE-8845-64F91D484FC9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SistemaServices", "..\SistemaServices\SistemaServices.csproj", "{1266AAD8-DDB0-40FE-8845-64F91D484FC9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SistemaWebApi", "..\SistemaWebApi\SistemaWebApi.csproj", "{A8A0A2A9-85F0-4BFB-ABD7-132411292F9B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SistemaWebApi", "..\SistemaWebApi\SistemaWebApi.csproj", "{A8A0A2A9-85F0-4BFB-ABD7-132411292F9B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SistemaShareds", "..\SistemaShareds\SistemaShareds.csproj", "{6DB90E88-7BAD-41AF-88BF-4EC44D4AFBE0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{A8A0A2A9-85F0-4BFB-ABD7-132411292F9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A8A0A2A9-85F0-4BFB-ABD7-132411292F9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A8A0A2A9-85F0-4BFB-ABD7-132411292F9B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6DB90E88-7BAD-41AF-88BF-4EC44D4AFBE0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6DB90E88-7BAD-41AF-88BF-4EC44D4AFBE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6DB90E88-7BAD-41AF-88BF-4EC44D4AFBE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6DB90E88-7BAD-41AF-88BF-4EC44D4AFBE0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
