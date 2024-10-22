@@ -41,16 +41,6 @@ namespace SistemaWebApi.Controllers
                 return Json(respuesta);
             }
         }
-
-        //hacer un metodo para obtener todos los productos
-        //[HttpGet("ObtenerProductos")]
-        //public IActionResult ObtenerProductos()
-        //{
-        //    List<ProductoDTO> productos = producto.ObtenerListaProductos();
-        //    return Ok(productos);
-        //}
-
-        //obtener producto segun el filtro
         [HttpGet("FiltrarProductos")]
         public IActionResult FiltrarProductos([FromQuery] int limite)
         {
@@ -59,9 +49,5 @@ namespace SistemaWebApi.Controllers
             return Ok(productos);
 
         }
-
-
-
-
     }
 }
