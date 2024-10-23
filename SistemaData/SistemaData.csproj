@@ -14,4 +14,10 @@
     <ProjectReference Include="..\SistemaEntities\SistemaEntities.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="ClienteFiles.cs">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Compile>
+  </ItemGroup>
+
 </Project>

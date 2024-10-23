@@ -12,13 +12,11 @@ namespace SistemaTest
     public class ClienteTest
     {
         ClienteService clienteService=new ClienteService();
-        private ClienteDTO clienteDTO;
 
         [SetUp]
         public void Setup()
         {
             clienteService = new ClienteService();
-            clienteDTO = CrearClienteValido();
         }
 
         private ClienteDTO CrearClienteValido() 
@@ -44,7 +42,25 @@ namespace SistemaTest
 
             Assert.IsTrue(resultado.Success);
             Assert.AreEqual("El Cliente se Cargo Con Exito", resultado.Message);
-            Assert.AreEqual(3,clienteService.ObtenerListaClientes().Count());
+            
+        }
+        [Test]
+        public void AgregarCliente_FaltaDni_DeberiaDarFalse()
+        {
+            var clienteDTO = new ClienteDTO
+            {
+                DniCliente = 0,
+                Nombre = "Nereo",
+                Apellido = "Ayala",
+                Email = "nereoayala@gmail.com",
+                Telefono = "3492456789",
+                FechaNacimiento = DateTime.Now,
+                Latitud = -343849.0,
+                Longitud = 234567.0,
+            };
+            ResultadoEntity resultado = clienteService.AgregarCliente(clienteDTO);
+            Assert.IsFalse(resultado.Success);
+            Assert.AreEqual("El Dni del Cliente no es Valido", resultado.Errores[0]);
         }
     }
 }

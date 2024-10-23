@@ -10,7 +10,7 @@ namespace SistemaData
 {
     public class ClienteFiles
     {
-        private static string ClienteFile = Path.GetFullPath("..//SistemaData//Listas//Cliente.json");
+        private static string ClienteFile = Path.GetFullPath("Cliente.json");
         public static List<ClienteEntity> LeerClientesDesdeJson()
         {
             if (File.Exists($"{ClienteFile}"))
@@ -36,7 +36,7 @@ namespace SistemaData
                 clientes.RemoveAll(x => x.IdCliente == cliente.IdCliente);
             }
             clientes.Add(cliente);
-            clientes = clientes.OrderBy(x=>x.IdCliente).ToList();
+            clientes = clientes.OrderBy(x => x.IdCliente).ToList();
             string json = JsonConvert.SerializeObject(clientes, Formatting.Indented);
             File.WriteAllText(ClienteFile, json);
         }
