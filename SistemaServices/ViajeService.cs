@@ -15,7 +15,6 @@ namespace SistemaServices
         public ResultadoEntity AgregarViaje(ViajeDTO viaje)
         {
             ResultadoEntity resultado = new ResultadoEntity() { Success = false };
-            viaje.Validar(resultado);
             if (resultado.Errores.Count() > 0)
             {
                 resultado.Message = "Error al cargar el viaje";

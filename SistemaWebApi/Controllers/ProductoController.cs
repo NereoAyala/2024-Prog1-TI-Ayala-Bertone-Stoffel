@@ -7,39 +7,35 @@ namespace SistemaWebApi.Controllers
 {
     [ApiController]
     [Route("Producto")]
-    public class ProductoController : Controller
+    public class ProductoController : ControllerBase
     {
         ProductoService producto=new ProductoService();
 
         [HttpPost("AgregarProducto")]
         public IActionResult AgregarProducto([FromBody]ProductoDTO productoDTO) 
         {
-            ResultadoEntity resultado = producto.AgregarProducto(productoDTO);
-            if (resultado.Success==false)
+            if (!ModelState.IsValid)
             {
-                var respuesta = new { mensaje = resultado.Errores };
-                return Json(respuesta);
+                return BadRequest(ModelState);
             }
-            else
-            {
-                var respuesta = new { mensaje = resultado.Message };
-                return Json(respuesta);
-            }
+            producto.AgregarProducto(productoDTO);
+            return Ok("Producto agregado con éxito.");
         }
         [HttpPut("ActualizarStock/{id}")]
         public IActionResult ActualizarStock(int id,[FromBody]int stockNuevo) 
         {
-            ResultadoEntity resultado = producto.ActualizarStockProducto(id,stockNuevo);
-            if (resultado.Success==false)
+            if (!ModelState.IsValid)
             {
-                var respuesta = new { mensaje = resultado.Errores };
-                return Json(respuesta);
+                return BadRequest(ModelState);
             }
-            else
+
+            var Producto = producto.ActualizarStockProducto(id, stockNuevo);
+            if (Producto == null)
             {
-               var respuesta = new { mensaje = resultado.Message };
-                return Json(respuesta);
+                return NotFound("Producto no encontrado.");
             }
+
+            return Ok("Producto actualizado con éxito.");
         }
         [HttpGet("FiltrarProductos")]
         public IActionResult FiltrarProductos([FromQuery] int limite)

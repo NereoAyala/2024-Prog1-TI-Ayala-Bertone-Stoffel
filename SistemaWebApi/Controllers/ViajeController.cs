@@ -7,23 +7,27 @@ namespace SistemaWebApi.Controllers
 {
     [ApiController]
     [Route("Viaje")]
-    public class ViajeController : Controller
+    public class ViajeController : ControllerBase
     {
-        
-        private ViajeService service=new ViajeService();
+
+        private ViajeService service = new ViajeService();
         [HttpPost("AgregarViaje")]
         public IActionResult AgregarViaje([FromBody] ViajeDTO viajeDTO)
         {
             ResultadoEntity resultado = service.AgregarViaje(viajeDTO);
-            if (resultado.Success == false)
+            if (!resultado.Success)
             {
-               var respuesta = new { mensaje = resultado.Errores };
-                return Json(respuesta);
+                // Añadir errores al ModelState si hay errores en ResultadoEntity
+                foreach (var error in resultado.Errores)
+                {
+                    ModelState.AddModelError(string.Empty, error);
+                }
+                return BadRequest(ModelState);
             }
             else
             {
                 var respuesta = new { mensaje = resultado.Message };
-                return Json(respuesta);
+                return Ok(respuesta);
             }
         }
     }

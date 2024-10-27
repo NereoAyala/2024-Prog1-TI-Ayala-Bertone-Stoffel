@@ -5,7 +5,7 @@ using SistemaServices;
 
 namespace SistemaWebApi.Controllers
 {
-    public class CompraController : Controller
+    public class CompraController : ControllerBase
     {
         private CompraService compraService = new CompraService();
         private ResultadoEntity resultado = new ResultadoEntity();
@@ -17,16 +17,24 @@ namespace SistemaWebApi.Controllers
         [HttpPost("AgregarCompra")]
         public IActionResult AgregarCompra([FromBody] CompraDTO compraDto)
         {
-            resultado = compraService.CrearCompra(compraDto);
-            if (resultado.Success==true)
+            var resultado = compraService.CrearCompra(compraDto);
+
+            if (resultado.Success)
             {
+                // Respuesta en caso de éxito
                 var respuesta = new { mensaje = resultado.Message };
-                return Json(respuesta);
+                return Ok(respuesta);
             }
             else
             {
-                var respuesta = new { mensaje = resultado.Errores };
-                return Json(respuesta);
+                // Añadir errores al ModelState
+                foreach (var error in resultado.Errores)
+                {
+                    ModelState.AddModelError(string.Empty, error);
+                }
+
+                // Devolver respuesta de error estructurada
+                return BadRequest(ModelState);
             }
         }
         [HttpGet("ObtenerCompras")]

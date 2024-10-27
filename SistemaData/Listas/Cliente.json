@@ -30,5 +30,21 @@
     "FechaEliminacion": null,
     "FechaCreacion": "2024-10-22T00:48:42.6328855-03:00",
     "FechaActualizacion": null
+  },
+  {
+    "IdCliente": 3,
+    "DniCliente": 44231567,
+    "Nombre": "zoe",
+    "Apellido": "Bertone",
+    "Email": "zieB@example.com",
+    "Telefono": "342345678",
+    "localizacionCliente": {
+      "LatitudCliente": -32.0,
+      "LongitudCliente": -61.0
+    },
+    "FechaNacimiento": "2002-10-27T00:00:00",
+    "FechaEliminacion": null,
+    "FechaCreacion": "2024-10-27T19:56:31.650615-03:00",
+    "FechaActualizacion": "2024-10-27T20:00:57.4219692-03:00"
   }
 ]

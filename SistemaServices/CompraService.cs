@@ -15,7 +15,6 @@ namespace SistemaServices
         public ResultadoEntity CrearCompra(CompraDTO compraDto)
         {
             ResultadoEntity resultado = new ResultadoEntity { Success = false };
-            compraDto.Validacion(resultado);
             List<ProductoEntity> productos = ProductoFiles.LeerProductosDesdeJson();
             var producto = productos.Find(x => x.IdProducto == compraDto.CodProducto);
             if (producto == null) {
@@ -69,7 +68,7 @@ namespace SistemaServices
         }
         public List<CompraDTO> ObtenerCompras()
         {
-            List<CompraEntity> compras = CompraFiles.LeerCompraDesdeJson();
+            List<CompraEntity> compras = CompraFiles.LeerCompraDesdeJson().Where(x => x.FechaEliminacion == null).ToList();
             List<CompraDTO> compraDTOs = new List<CompraDTO>();
             foreach (CompraEntity compra in compras)
             {

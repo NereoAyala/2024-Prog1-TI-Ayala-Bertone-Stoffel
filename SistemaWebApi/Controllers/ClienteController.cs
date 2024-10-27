@@ -8,59 +8,52 @@ namespace SistemaWebApi.Controllers
 {
     [ApiController]
     [Route("Cliente")]
-    public class ClienteController : Controller
+    public class ClienteController : ControllerBase
     {
         ClienteService clienteService = new ClienteService();
 
         [HttpPost("AgregarCliente")]
         public IActionResult AgregarCliente([FromBody] ClienteDTO clienteDTO)
         {
-            ResultadoEntity resultado = clienteService.AgregarCliente(clienteDTO);
-            if (resultado.Success == false)
+            if (!ModelState.IsValid)
             {
-                var respuesta = new { mensaje = resultado.Errores };
-                return Json(respuesta);
+                return BadRequest(ModelState);
             }
-            else
-            {
-                var respuesta = new { mensaje = resultado.Message };
-                return Json(respuesta);
-            }
+
+            clienteService.AgregarCliente(clienteDTO);
+            return Ok("Cliente agregado con éxito.");
         }
-        [HttpDelete("EliminarCliente{id}")]
-        public IActionResult EliminarCliente(int id) 
+        [HttpDelete("EliminarCliente/{id}")]
+        public IActionResult EliminarCliente(int id)
         {
-            ResultadoEntity resultado = clienteService.EliminarCliente(id);
-            if (resultado.Success==false)
+            var cliente = clienteService.EliminarCliente(id);
+            if (cliente == null)
             {
-                var respuesta = new { mensaje = resultado.Errores };
-                return Json(respuesta);
+                return NotFound("Cliente no encontrado.");
             }
-            else
-            {
-                var respuesta = new { mensaje = resultado.Message };
-                return Json(respuesta);
-            }
+
+            return Ok("Cliente eliminado con éxito.");
         }
-        [HttpPut("ActualizarCliente{id}")]
-        public IActionResult ActualizarCliente(int id,[FromBody]ClienteDTO cliente) 
+        [HttpPut("ActualizarCliente/{id}")]
+        public IActionResult ActualizarCliente(int id, [FromBody] ClienteDTO cliente)
         {
-            ResultadoEntity resultado = clienteService.ActualizarCliente(id,cliente);
-            if (resultado.Success==false)
+            if (!ModelState.IsValid)
             {
-                var respuesta = new { mensaje = resultado.Errores };
-                return Json(respuesta);
+                return BadRequest(ModelState);
             }
-            else
+
+            var Cliente = clienteService.ActualizarCliente(id, cliente);
+            if (Cliente == null)
             {
-                var respuesta = new { mensaje = resultado.Message };
-                return Json(respuesta);
+                return NotFound("Cliente no encontrado.");
             }
+
+            return Ok("Cliente actualizado con éxito.");
         }
         [HttpGet("ObtenerClientes")]
-        public IActionResult ObtenerClientes() 
+        public IActionResult ObtenerClientes()
         {
-            List<ClienteDTO>clientes=clienteService.ObtenerListaClientes();
+            List<ClienteDTO> clientes = clienteService.ObtenerListaClientes();
             return Ok(clientes);
         }
     }

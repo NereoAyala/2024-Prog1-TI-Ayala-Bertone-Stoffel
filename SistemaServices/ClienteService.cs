@@ -6,16 +6,9 @@ namespace SistemaServices
 {
     public class ClienteService
     {
-        public ResultadoEntity AgregarCliente(ClienteDTO cliente)
+        public void AgregarCliente(ClienteDTO cliente)
         {
-            ResultadoEntity resultado = new ResultadoEntity() { Success = false };
-            cliente.Validar(resultado);
-            if (resultado.Errores.Count() > 0)
-            {
-                return resultado;
-            }
             List<ClienteEntity> clientes = ClienteFiles.LeerClientesDesdeJson();
-
             var clienteNuevo = new ClienteEntity
             {
                 DniCliente = cliente.DniCliente,
@@ -33,38 +26,26 @@ namespace SistemaServices
             };
             clientes.Add(clienteNuevo);
             ClienteFiles.EscribirClienteaJson(clienteNuevo);
-            resultado.Success = true;
-            resultado.Message = "El Cliente se Cargo Con Exito";
-            return resultado;
         }
-
-        public ResultadoEntity EliminarCliente(int id)
+        public ClienteEntity EliminarCliente(int id)
         {
-            ResultadoEntity resultado = new ResultadoEntity() { Success = false };
             List<ClienteEntity> clientes = ClienteFiles.LeerClientesDesdeJson();
             ClienteEntity cliente = clientes.Find(x => x.IdCliente == id);
             if (cliente == null)
             {
-                resultado.Errores.Add("El Cliente No se encontro, vuelva a ingresar el Id");
-                return resultado;
+                return null;
             }
             cliente.FechaEliminacion = DateTime.Now;
             ClienteFiles.EscribirClienteaJson(cliente);
-            resultado.Success = true;
-            resultado.Message = "El Cliente se Elimino con Exito";
-            return resultado;
+            return cliente;
         }
-
-        public ResultadoEntity ActualizarCliente(int id, ClienteDTO clienteDTO)
+        public ClienteEntity ActualizarCliente(int id, ClienteDTO clienteDTO)
         {
-            ResultadoEntity resultado = new ResultadoEntity() { Success = false };
             List<ClienteEntity> clientes = ClienteFiles.LeerClientesDesdeJson();
-
             ClienteEntity cliente = clientes.Find(x => x.IdCliente == id);
             if (cliente == null)
             {
-                resultado.Errores.Add("El Cliente No se encontro, vuelva a ingresar el Id");
-                return resultado;
+                return null;
             }
             cliente.DniCliente = clienteDTO.DniCliente;
             cliente.Nombre = clienteDTO.Nombre;
@@ -75,17 +56,14 @@ namespace SistemaServices
                 LatitudCliente = clienteDTO.Latitud,
                 LongitudCliente = clienteDTO.Longitud,
             };
-            cliente.FechaActualizacion = DateTime.Now;
+            cliente.FechaEliminacion = null;
             ClienteFiles.EscribirClienteaJson(cliente);
-            resultado.Success = true;
-            resultado.Message = "El Cliente se Actualizo con Exito";
-            return resultado;
+            return cliente;
         }
-
         public List<ClienteDTO> ObtenerListaClientes()
         {
             List<ClienteDTO> clienteDTOs = new List<ClienteDTO>();
-            List<ClienteEntity> clientes = ClienteFiles.LeerClientesDesdeJson();
+            List<ClienteEntity> clientes = ClienteFiles.LeerClientesDesdeJson().Where(x=>x.FechaEliminacion==null).ToList();
             foreach (var item in clientes)
             {
                 ClienteDTO clienteDTO = new ClienteDTO
