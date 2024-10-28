@@ -27,6 +27,7 @@
     <div class="main-form">
 
         <form action="js/agregarcompra.js" method="POST" id="compraForm">
+            <button class="boton-back"><a href="index.html"><</button></a>
             <h3>NUEVA COMPRA</h3>
             <input type="number" id="id" name="id" required placeholder="ID producto">
             <input type="number" id="cantidad" name="cantidad" required placeholder="Cantidad">  
@@ -37,18 +38,7 @@
         </form>
 
     </div>
-    <table border="1">
-        <thead>
-            <tr>
-                <th>ID Compra</th>
-                <th>Cantidad</th>
-                <th>Fecha Entrega Solicitada</th>
-            </tr>
-        </thead>
-        <tbody id="TablaNuevaCompra">
-            
-        </tbody>
-    </table>
+    
     <script src="js/agregarcompra.js"></script>
 
 <footer>

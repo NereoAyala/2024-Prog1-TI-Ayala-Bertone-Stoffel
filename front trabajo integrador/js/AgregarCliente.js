@@ -1,11 +1,8 @@
-
 document.addEventListener("DOMContentLoaded", function(event) {
     console.info("Pruebas")
 });
-
 document.getElementById('clienteForm').addEventListener('submit', function (event) {
     event.preventDefault();
-
     const dni = document.getElementById('dni').value;
     const nombre = document.getElementById('nombre').value;
     const apellido = document.getElementById('apellido').value;
@@ -14,9 +11,7 @@ document.getElementById('clienteForm').addEventListener('submit', function (even
     const latitud = document.getElementById('latitud').value;
     const longitud = document.getElementById('longitud').value;
     const fechaNacimiento = document.getElementById('fecha_nacimiento').value;
-
     console.log('Datos obtenidos:' ,dni, nombre, apellido, email, telefono, latitud, longitud, fechaNacimiento);
-
     const datos = {
         DniCliente: dni,
         nombre: nombre,
@@ -26,9 +21,7 @@ document.getElementById('clienteForm').addEventListener('submit', function (even
         latitud: latitud,
         longitud: longitud,
         fechaNacimiento: fechaNacimiento
-
     };
-
     fetch('http://localhost:5247/Cliente/AgregarCliente', {
         method: 'POST',
         headers: {
@@ -36,7 +29,6 @@ document.getElementById('clienteForm').addEventListener('submit', function (even
         },
         body: JSON.stringify(datos)
     })
-
     .then(response => response.json())
     .then(data => {
         console.log(data);
@@ -46,10 +38,5 @@ document.getElementById('clienteForm').addEventListener('submit', function (even
     .catch(error => {
         console.log('Error:', error);
     });
-        
-               
-
     console.log('Datos enviados:', datos);
-
-    
 });

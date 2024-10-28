@@ -1,5 +1,5 @@
 
-/* General */
+
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: #ffffff;
@@ -11,17 +11,10 @@ body {
     width: 100%;
     overflow: hidden;
     overflow-y: auto;
-    background-color: rgb(30, 108, 114);
+    background-color: rgb(9, 58, 91);
     min-height: 100vh;
 }
 
-/*body {
-    background-image: url('https://cdn.wallpapersafari.com/31/74/oDYvjf.jpg');
-    
-    background-size: cover;
-}*/
-
-/* Encabezado */
 header {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
     text-align: center;
@@ -34,13 +27,13 @@ header {
     padding: 5px;
 }
 
-/* Pie de página */
+
 footer {
     color: #ffffff;
     text-align: center;
     padding: 5px;
     width: 100%;
-    /*box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.5);*/
+    
     bottom: 0;
     margin-top: auto;
     position: relative;
@@ -74,22 +67,17 @@ header h1 {
     font-weight: bold;
 }
 
-.navbar a:hover {
-    color:#30dcd7;
-}
 
 .navbar a:hover::after {
     content: '';
     display: block;
     width: 100%;
     height: 3px;
-    background: #30dcd7;
+    background: #df8041;
     position: absolute;
     bottom: -5px;
     left: 0;
 }
-
-/* Sección Principal */
 .main {
     display: flex;
     flex-direction: row;
@@ -100,10 +88,7 @@ header h1 {
     text-align: center;
     gap: 10px;
     margin-bottom: 50px;
-  
 }
-
-/* Cajas */
 .box {
     border-radius: 50px;
     display: flex;
@@ -114,17 +99,14 @@ header h1 {
     transition: transform 0.3s;
     box-shadow: inset;
 }
-
 .box:hover {
     transform: scale(1.05);
-    /* Efecto al pasar el mouse */
 }
-
-/* Botones */
 .boton {
-    background: rgba(230, 237, 237, 0.1);
-    backdrop-filter: blur(10px);
-    box-shadow: 0 4px 20px rgba(51, 53, 53, 0.5);
+    
+ background: rgba(230, 237, 237, 0.1);
+
+    backdrop-filter: blur(15px);
     border: none;
     color: #ffffff;
     padding: 0;
@@ -135,19 +117,15 @@ header h1 {
     width: 100%;
     height: 100%;
     text-align: center;
-    transition: transform 0.3s, box-shadow 0.3s;
-    display: flex;
+    transition: transform 0.3s;
     justify-content: center;
     align-items: center;
 }
-
 .boton:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 20px rgba(209, 212, 212, 0.5);
+   box-shadow: 0 4px 7px rgba(209, 212, 212, 0.5);
 }
-
-/* Enlace dentro del botón */
-.boton a {
+.boton a, .boton-back a {
     text-decoration: none;
     color: inherit;
     width: 100%;
@@ -160,7 +138,6 @@ header h1 {
     text-overflow: ellipsis;
 }
 
-/*Formulario*/
 form {
     display: flex;
     flex-direction: column;
@@ -169,7 +146,9 @@ form {
     margin: 30px 10px;
     padding: 20px;
     flex-grow: 1;
-    background: rgba(230, 237, 237, 0.1);
+    /*background: rgba(230, 237, 237, 0.1);*/
+    background: rgba(87, 189, 211, 0.425);
+
     backdrop-filter: blur(15px);
     max-height: fit-content;
     box-sizing: border-box;
@@ -181,7 +160,7 @@ form {
 }
 
 input,
-textarea {
+textarea, .boton-back {
     padding: 10px;
     border: none;
     border-radius: 5px;
@@ -190,17 +169,15 @@ textarea {
     width: 50%;
     margin: 0 10px;
     display: flex;
-    background: rgba(230, 237, 237, 0.1);
+    background: rgba(69, 173, 173, 0.1);
     backdrop-filter: blur(10px);
-    /* Filtro de desenfoque */
 }
-
 input::placeholder,
 textarea::placeholder {
     color: #ffffff;
 }
 
-input[type="submit"] {
+input[type="submit"]{
     border: none;
     color: #ffffff;
     padding: 15px;
@@ -211,17 +188,28 @@ input[type="submit"] {
     transition: all 0.3s ease;
     width: 30%;
     margin: 0 auto;
-    /* Centra el botón */
     margin-top: 15px;
     background: rgba(230, 237, 237, 0.1);
     backdrop-filter: blur(10px);
-    /* Filtro de desenfoque */
     display: flex;
 }
 
+.boton-back {
+    width: 5%;
+    height: 40px;
+    border-radius: 60px;
+    align-self: start;
+    transition: all 0.3s ease;    
+}
+.boton-back:hover{
+   
+    background:#ea81ab;
+    transform: translateY(-2px);
+}
+
 input[type="submit"]:hover {
-    box-shadow: 0 4px 20px rgb(154, 156, 156);
-    background:#30dcd7;
+    /*box-shadow: 0 4px 20px rgb(218, 165, 91);*/
+    background:#df8041;
     transform: translateY(-2px);
 }
 
@@ -233,34 +221,22 @@ input[type="submit"]:hover {
     flex-grow: 1;
    
 }
-
-/*tablas*/
-/*hacer las tablas con el mismo estilo que el formulario y sin el efecto que traen por defecto*/
 table {
     border-collapse: collapse;
     width: 70%;
-    background: rgba(230, 237, 237, 0.1);
+    /*background: rgba(230, 237, 237, 0.1);*/
+    background: rgba(87, 189, 211, 0.425);
     backdrop-filter: blur(10px);
     margin: 10px;
     border-radius: 20px;
     overflow: hidden;
-
-
 }
-/*hacer que las celdas de la tabla tengan un borde*/
 th, td {
     border: 1px solid #ffffff;
     padding: 8px;
     text-align: center;
     color: #ffffff;
 }
-
-
-
-
-
-
-/*hacer responsive toda la pagina*/
 @media screen and (max-width: 768px) {
     .main {
         flex-direction: column;

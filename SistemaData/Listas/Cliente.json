@@ -46,5 +46,21 @@
     "FechaEliminacion": null,
     "FechaCreacion": "2024-10-27T19:56:31.650615-03:00",
     "FechaActualizacion": "2024-10-27T20:00:57.4219692-03:00"
+  },
+  {
+    "IdCliente": 4,
+    "DniCliente": 123456789,
+    "Nombre": "marisa",
+    "Apellido": "smith",
+    "Email": "marisa@gmail.com",
+    "Telefono": "34563",
+    "localizacionCliente": {
+      "LatitudCliente": 1121.0,
+      "LongitudCliente": 1121.0
+    },
+    "FechaNacimiento": "2000-10-20T00:00:00",
+    "FechaEliminacion": null,
+    "FechaCreacion": "2024-10-28T10:51:00.1914665-03:00",
+    "FechaActualizacion": null
   }
 ]

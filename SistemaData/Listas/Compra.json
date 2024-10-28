@@ -49,5 +49,22 @@
     "FechaEliminacion": null,
     "FechaCreacion": "2024-10-22T01:10:21.9769648-03:00",
     "FechaActualizacion": null
+  },
+  {
+    "IdCompra": 4,
+    "CodProducto": 1,
+    "DniCliente": 44023896,
+    "CantidadComprado": 29,
+    "FechaEntrega": "2024-10-30T00:00:00",
+    "EstadoCompra": 1,
+    "MontoCompra": 52635.0,
+    "PuntoDestino": {
+      "LatitudCliente": 343849.0,
+      "LongitudCliente": 234567.0
+    },
+    "TamañoCajaTotal": 29000.0,
+    "FechaEliminacion": null,
+    "FechaCreacion": "2024-10-28T10:34:31.4697753-03:00",
+    "FechaActualizacion": null
   }
 ]
