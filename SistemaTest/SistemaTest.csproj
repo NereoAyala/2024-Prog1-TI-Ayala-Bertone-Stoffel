@@ -20,6 +20,7 @@
   <ItemGroup>
     <ProjectReference Include="..\SistemaData\SistemaData.csproj" />
     <ProjectReference Include="..\SistemaServices\SistemaServices.csproj" />
+    <ProjectReference Include="..\SistemaWebApi\SistemaWebApi.csproj" />
   </ItemGroup>
 
   <ItemGroup>

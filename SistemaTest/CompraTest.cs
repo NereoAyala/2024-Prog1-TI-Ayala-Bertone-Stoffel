@@ -3,6 +3,9 @@ using SistemaServices;
 using NUnit.Framework;
 using SistemaDTO;
 using SistemaEntities;
+using Microsoft.AspNetCore.Mvc;
+using SistemaData;
+using SistemaWebApi.Controllers;
 
 
 namespace SistemaTest
@@ -81,21 +84,33 @@ namespace SistemaTest
             });
 
         }
-        //[Test]
-        //public void TestCrearCompra_Correcto()
-        //{
-        //    ResultadoEntity res = compraservice.CrearCompra(new CompraDTO()
-        //    {
-        //        CodProducto = 1,
-        //        DniCliente = 43955641,
-        //        CantidadComprado = 10,
-        //        FechaEntrega = new DateTime(2023, 12, 25)
-        //    });
-        //    Assert.IsTrue(res.Success);
-        //    Assert.That(res.Errores.Count, Is.EqualTo(0));
-        //    ProductoService stock = new ProductoService();
-        //    Assert.That(stock.ObtenerListaProductos()[0].StockDisponible, Is.EqualTo(15));
-        //}
+        [Test]
+        public void TestCrearCompra_Ok_DeberiaAgregarCompra()
+        {
+            var controller = new CompraController();
+            var compraDTO = new CompraDTO
+            {
+                CodProducto = 1,
+                DniCliente = 46218295,
+                CantidadComprado = 2,
+                FechaEntrega = DateTime.Now
+            };
+
+            var resultado = controller.AgregarCompra(compraDTO) as OkObjectResult;
+
+            Assert.IsNotNull(resultado);
+            Assert.AreEqual(200, resultado.StatusCode);
+
+            var respuesta = resultado.Value as dynamic;
+            Assert.AreEqual("Compra cargada con exito", respuesta.Message);
+
+            // Verifica que la compra se haya agregado
+            var compras = CompraFiles.LeerCompraDesdeJson();
+            var compraAgregada = compras.FirstOrDefault(x => x.DniCliente == compraDTO.DniCliente && x.CodProducto == compraDTO.CodProducto);
+
+            Assert.IsNotNull(compraAgregada);
+            Assert.AreEqual(compraDTO.CantidadComprado, compraAgregada.CantidadComprado);
+        }
         //[Test]
         //public void TestCrearCompra_Incorrecto_FaltanDatos()
         //{

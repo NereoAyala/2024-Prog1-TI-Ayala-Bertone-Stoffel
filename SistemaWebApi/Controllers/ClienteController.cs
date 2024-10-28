@@ -15,6 +15,11 @@ namespace SistemaWebApi.Controllers
         [HttpPost("AgregarCliente")]
         public IActionResult AgregarCliente([FromBody] ClienteDTO clienteDTO)
         {
+            if (clienteDTO.DniCliente <= 0)
+            {
+                ModelState.AddModelError("DniCliente", "El DNI debe ser un número positivo.");
+                return BadRequest(ModelState);
+            }
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);

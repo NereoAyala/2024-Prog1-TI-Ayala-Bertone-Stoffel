@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SistemaTest
 {
-    internal class ViajeTest
+    public class ViajeTest
     {
     }
 }

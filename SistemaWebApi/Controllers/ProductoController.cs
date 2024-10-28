@@ -14,6 +14,12 @@ namespace SistemaWebApi.Controllers
         [HttpPost("AgregarProducto")]
         public IActionResult AgregarProducto([FromBody]ProductoDTO productoDTO) 
         {
+
+            if (string.IsNullOrEmpty(productoDTO.Nombre))
+            {
+                ModelState.AddModelError("NombreProducto", "El Nombre del Producto es Obligatorio.");
+                return BadRequest(ModelState);
+            }
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
