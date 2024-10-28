@@ -1,3 +1,16 @@
 [
-  
+  {
+    "IdProducto": 1,
+    "Nombre": "tv",
+    "Marca": "samsung",
+    "AltoCaja": 10,
+    "AnchoCaja": 10,
+    "ProfundidadCaja": 10,
+    "PrecioUnitario": 10000.0,
+    "StockDisponible": 244,
+    "StockMinimo": 1,
+    "FechaEliminacion": null,
+    "FechaCreacion": "2024-10-28T15:52:34.2761638-03:00",
+    "FechaActualizacion": "2024-10-28T16:00:32.2066201-03:00"
+  }
 ]

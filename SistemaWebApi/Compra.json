@@ -1,0 +1,36 @@
+[
+  {
+    "IdCompra": 1,
+    "CodProducto": 1,
+    "DniCliente": 11111,
+    "CantidadComprado": 1,
+    "FechaEntrega": "2024-10-30T00:00:00",
+    "EstadoCompra": 1,
+    "MontoCompra": 9075.0,
+    "PuntoDestino": {
+      "LatitudCliente": 1111.0,
+      "LongitudCliente": 1111.0
+    },
+    "TamañoCajaTotal": 1000.0,
+    "FechaEliminacion": null,
+    "FechaCreacion": "2024-10-28T16:03:51.2107921-03:00",
+    "FechaActualizacion": null
+  },
+  {
+    "IdCompra": 2,
+    "CodProducto": 1,
+    "DniCliente": 11111,
+    "CantidadComprado": 1,
+    "FechaEntrega": "2024-10-30T00:00:00",
+    "EstadoCompra": 1,
+    "MontoCompra": 9075.0,
+    "PuntoDestino": {
+      "LatitudCliente": 1111.0,
+      "LongitudCliente": 1111.0
+    },
+    "TamañoCajaTotal": 1000.0,
+    "FechaEliminacion": null,
+    "FechaCreacion": "2024-10-28T16:03:55.1491711-03:00",
+    "FechaActualizacion": null
+  }
+]

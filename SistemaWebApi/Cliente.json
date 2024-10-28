@@ -1,0 +1,50 @@
+[
+  {
+    "IdCliente": 1,
+    "DniCliente": 123098,
+    "Nombre": "qq",
+    "Apellido": "qq",
+    "Email": "q@gmail.com",
+    "Telefono": "23221",
+    "localizacionCliente": {
+      "LatitudCliente": 1223.0,
+      "LongitudCliente": 1111.0
+    },
+    "FechaNacimiento": "2000-10-10T00:00:00",
+    "FechaEliminacion": null,
+    "FechaCreacion": "2024-10-28T16:02:06.0416507-03:00",
+    "FechaActualizacion": null
+  },
+  {
+    "IdCliente": 2,
+    "DniCliente": 123098,
+    "Nombre": "qq",
+    "Apellido": "qq",
+    "Email": "q@gmail.com",
+    "Telefono": "23221",
+    "localizacionCliente": {
+      "LatitudCliente": 1223.0,
+      "LongitudCliente": 1111.0
+    },
+    "FechaNacimiento": "2000-10-10T00:00:00",
+    "FechaEliminacion": null,
+    "FechaCreacion": "2024-10-28T16:02:08.3200123-03:00",
+    "FechaActualizacion": null
+  },
+  {
+    "IdCliente": 3,
+    "DniCliente": 11111,
+    "Nombre": "q",
+    "Apellido": "q",
+    "Email": "q@gmail.com",
+    "Telefono": "111",
+    "localizacionCliente": {
+      "LatitudCliente": 1111.0,
+      "LongitudCliente": 1111.0
+    },
+    "FechaNacimiento": "2000-10-10T00:00:00",
+    "FechaEliminacion": null,
+    "FechaCreacion": "2024-10-28T16:03:04.6487792-03:00",
+    "FechaActualizacion": null
+  }
+]

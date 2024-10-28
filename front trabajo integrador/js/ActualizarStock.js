@@ -11,13 +11,21 @@ document.getElementById('formulario-actualizar-stock').addEventListener('submit'
         },
         body: JSON.stringify(stock) 
     })
-        .then(response => response.json())
+        .then(response => response.text())
         .then(data => {
-            console.log(data);
-            alert(data);
+        
+                console.log("Respuesta recibida:", data);
+                alert(data)
         })
-        .catch(error => {
-            console.log('Error:', error);
-        });
-    console.log('Datos enviados:', datos);
+            .catch(error => {
+                // Manejo de errores
+                console.error("Ocurrió un error:", error.message);
+            });
+            
+
+           
+            
+        
+        
+    console.log('Datos enviados:', id, stock);
 });

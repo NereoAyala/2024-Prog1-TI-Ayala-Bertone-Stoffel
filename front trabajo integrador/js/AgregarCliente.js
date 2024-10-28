@@ -29,11 +29,11 @@ document.getElementById('clienteForm').addEventListener('submit', function (even
         },
         body: JSON.stringify(datos)
     })
-    .then(response => response.json())
+    .then(response => response.text())
     .then(data => {
         console.log(data);
        
-        alert(data.mensaje);
+        alert(data);
     })
     .catch(error => {
         console.log('Error:', error);
