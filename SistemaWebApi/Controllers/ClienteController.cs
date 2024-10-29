@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
+using SistemaData;
 using SistemaDTO;
 using SistemaEntities;
 using SistemaServices;
@@ -20,10 +21,18 @@ namespace SistemaWebApi.Controllers
                 ModelState.AddModelError("DniCliente", "El DNI debe ser un número positivo.");
                 return BadRequest(ModelState);
             }
+
+            var clientes = ClienteFiles.LeerClientesDesdeJson();
+            if (clientes.Any(c => c.DniCliente == clienteDTO.DniCliente))
+            {
+                ModelState.AddModelError("DniCliente", "El cliente ya existe.");
+                return BadRequest(ModelState);
+            }
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
-            }
+            }        
 
             clienteService.AgregarCliente(clienteDTO);
             return Ok("Cliente agregado con éxito.");

@@ -9,6 +9,10 @@ namespace SistemaServices
         public void AgregarCliente(ClienteDTO cliente)
         {
             List<ClienteEntity> clientes = ClienteFiles.LeerClientesDesdeJson();
+            if (clientes.Any(c => c.DniCliente == cliente.DniCliente))
+            {
+                return;
+            }
             var clienteNuevo = new ClienteEntity
             {
                 DniCliente = cliente.DniCliente,

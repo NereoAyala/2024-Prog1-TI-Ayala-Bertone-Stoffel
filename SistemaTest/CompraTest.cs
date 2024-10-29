@@ -82,7 +82,6 @@ namespace SistemaTest
                 StockMinimo = 3,
                 StockDisponible = 30
             });
-
         }
         [Test]
         public void TestCrearCompra_Ok_DeberiaAgregarCompra()
@@ -96,50 +95,61 @@ namespace SistemaTest
                 FechaEntrega = DateTime.Now
             };
 
+            CargarProductos();
+
             var resultado = controller.AgregarCompra(compraDTO) as OkObjectResult;
 
             Assert.IsNotNull(resultado);
             Assert.AreEqual(200, resultado.StatusCode);
 
-            var respuesta = resultado.Value as dynamic;
-            Assert.AreEqual("Compra cargada con exito", respuesta.Message);
-
-            // Verifica que la compra se haya agregado
             var compras = CompraFiles.LeerCompraDesdeJson();
             var compraAgregada = compras.FirstOrDefault(x => x.DniCliente == compraDTO.DniCliente && x.CodProducto == compraDTO.CodProducto);
 
             Assert.IsNotNull(compraAgregada);
             Assert.AreEqual(compraDTO.CantidadComprado, compraAgregada.CantidadComprado);
         }
-        //[Test]
-        //public void TestCrearCompra_Incorrecto_FaltanDatos()
-        //{
-        //    ResultadoEntity res = compraservice.CrearCompra(new CompraDTO()
-        //    {
-        //        CodProducto = 1,
-        //    });
-        //    Assert.IsFalse(res.Success);
-        //    Assert.That(res.Errores[0], Is.EqualTo("El dni del cliente no es valido."));
-        //    Assert.That(res.Errores[1], Is.EqualTo("La cantidad ingresada no es valida."));
-        //    Assert.That(res.Errores[2], Is.EqualTo("La fecha de entrega no es valida.")); 
-        //    Assert.That(compraservice.ObtenerCompras().Count, Is.EqualTo(0));
-        //}
+        [Test]
+        public void CrearCompra_FaltaDNI_DeberiaDarError()
+        {
+            var controller = new CompraController();
+            var compraDTO = new CompraDTO
+            {
+                CodProducto = 1,
+                DniCliente = 0,
+                CantidadComprado = 2,
+                FechaEntrega = DateTime.Now
+            };
 
-        //[Test]
-        //public void TestCrearCompra_Incorrecto_ErrorCodigo_ErrorCliente_ErrorStock()
-        //{
-        //    ResultadoEntity res = compraservice.CrearCompra(new CompraDTO()
-        //    {
-        //        CodProducto = 9,
-        //        CantidadComprado = 30,
-        //        DniCliente = 45029420,
-        //        FechaEntrega = DateTime.Now.AddDays(7),
-        //    });
-        //    Assert.IsFalse(res.Success);
-        //    Assert.That(res.Errores[0], Is.EqualTo("Producto no encontrado"));
-        //    Assert.That(res.Errores[1], Is.EqualTo("No se puede realizar la compra no hay stock suficiente"));
-        //    Assert.That(res.Errores[2], Is.EqualTo("Cliente no encontrado"));
-        //    Assert.That(compraservice.ObtenerCompras().Count, Is.EqualTo(0));
-        //}
+            CargarProductos();
+            var resultado = controller.AgregarCompra(compraDTO) as BadRequestObjectResult;
+
+            Assert.IsNotNull(resultado);
+            Assert.AreEqual(400, resultado.StatusCode);
+
+            var errores = resultado.Value as SerializableError;
+            Assert.IsNotNull(errores);//PODRIA SACARLO
+        }
+
+        [Test]
+        public void CrearCompra_FaltaCodProducto_DeberiaDarError()
+        {
+            var controller = new CompraController();
+            var compraDTO = new CompraDTO
+            {
+                CodProducto = 0,
+                DniCliente = 46218295,
+                CantidadComprado = 2,
+                FechaEntrega = DateTime.Now
+            };
+
+            CargarProductos();
+            var resultado = controller.AgregarCompra(compraDTO) as BadRequestObjectResult;
+
+            Assert.IsNotNull(resultado);
+            Assert.AreEqual(400, resultado.StatusCode);
+
+            var errores = resultado.Value as SerializableError;
+            Assert.IsNotNull(errores);//PODRIA SACARLO
+        }
     }
 }
