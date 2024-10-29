@@ -10,7 +10,7 @@ namespace SistemaData
 {
     public class ProductoFiles
     {
-        private static string ProductoFile = Path.GetFullPath("..//SistemaData//Listas//Producto.json");
+        private static string ProductoFile = Path.GetFullPath("Producto.json");
         public static List<ProductoEntity> LeerProductosDesdeJson()
         {
             if (File.Exists($"{ProductoFile}"))

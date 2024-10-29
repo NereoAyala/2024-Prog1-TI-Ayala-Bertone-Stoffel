@@ -8,8 +8,8 @@
     "EstadoCompra": 1,
     "MontoCompra": 9075.0,
     "PuntoDestino": {
-      "LatitudCliente": 1111.0,
-      "LongitudCliente": 1111.0
+      "LatitudCliente": -32.0,
+      "LongitudCliente": -62.0
     },
     "TamañoCajaTotal": 1000.0,
     "FechaEliminacion": null,
@@ -25,8 +25,8 @@
     "EstadoCompra": 1,
     "MontoCompra": 9075.0,
     "PuntoDestino": {
-      "LatitudCliente": 1111.0,
-      "LongitudCliente": 1111.0
+      "LatitudCliente": -31.0,
+      "LongitudCliente": -62.0
     },
     "TamañoCajaTotal": 1000.0,
     "FechaEliminacion": null,

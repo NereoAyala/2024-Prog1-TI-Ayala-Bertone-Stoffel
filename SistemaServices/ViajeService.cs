@@ -82,7 +82,8 @@ namespace SistemaServices
                         FechaEntregaDesde = viaje.FechaEntregaDesde,
                         FechaEntregaHasta = viaje.FechaEntregaHasta,
                         PorcentajeCarga = (int)((cargaActual / camioneta.TamañoCarga) * 100),
-                        ListadoCodigosCompras = codigosComprasAsignadas
+                        ListadoCodigosCompras = codigosComprasAsignadas,
+                        FechaCreacion=DateTime.Now,                       
                     };
                     ViajeFiles.EscribirViaje(viajeTemp);
                 }

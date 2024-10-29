@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components.Forms;
 using SistemaData;
 using SistemaDTO;
+using SistemaEntities;
 using SistemaServices;
 using SistemaShareds;
 using SistemaWebApi.Controllers;
@@ -20,15 +21,9 @@ namespace SistemaTest
         public void Setup()
         {
             viajeService = new ViajeService();
-            var camionetas = CamionetaFiles.LeerCamionetasDesdeJson();
+            var controllercompra = new CompraController();
             var compras = CompraFiles.LeerCompraDesdeJson();
-        }
 
-        [Test]
-        public void AgregarViaje_OK_DeberiaAgregarViaje()
-        {
-            var controller = new ViajeController();
-            var controllercompra=new CompraController();
             CompraDTO compra1 = new CompraDTO()
             {
                 CodProducto = 1,
@@ -54,10 +49,42 @@ namespace SistemaTest
             controllercompra.AgregarCompra(compra2);
             controllercompra.AgregarCompra(compra3);
 
+            CamionetaEntity camion1 = new CamionetaEntity()
+            {
+                IdCamioneta = 1,
+                Patente = "AA0030D",
+                DistanciaMax = 350,
+                TamañoCarga = 6300,
+                FechaCreacion = DateTime.Now,
+            };
+            CamionetaEntity camion2 = new CamionetaEntity()
+            {
+                IdCamioneta = 2,
+                Patente = "Ae7180j",
+                DistanciaMax = 550,
+                TamañoCarga = 5800,
+                FechaCreacion = DateTime.Now,
+            };
+            CamionetaEntity camion3 = new CamionetaEntity()
+            {
+                IdCamioneta = 3,
+                Patente = "AB5780E",
+                DistanciaMax = 780,
+                TamañoCarga = 6700,
+                FechaCreacion = DateTime.Now,
+            };
+            CamionetaFiles.EscribirCamioneta(camion1);
+            CamionetaFiles.EscribirCamioneta(camion2);
+            CamionetaFiles.EscribirCamioneta(camion3);
+        }
+        [Test]
+        public void AgregarViaje_OK_DeberiaAgregarViaje()
+        {
+            var controller = new ViajeController();
             var viajeDTO = new ViajeDTO
             {
-                FechaEntregaDesde = DateTime.Now.AddDays(1),
-                FechaEntregaHasta = DateTime.Now.AddDays(5)
+                FechaEntregaDesde = DateTime.Now.AddDays(40),
+                FechaEntregaHasta = DateTime.Now.AddDays(45)
             };
             var camionetas = CamionetaFiles.LeerCamionetasDesdeJson();
             var resultado = viajeService.AgregarViaje(viajeDTO);
