@@ -16,6 +16,7 @@ function llenarTablaStock(limiteStock) {
         .then(data => {
             tablaproductos.innerHTML = '';
             data.forEach(producto => {
+                
                 const fila = document.createElement('tr');
                 fila.innerHTML = `
                     <td>${producto.nombre}</td>

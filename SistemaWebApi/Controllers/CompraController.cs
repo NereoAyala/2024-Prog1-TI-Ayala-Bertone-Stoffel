@@ -18,24 +18,25 @@ namespace SistemaWebApi.Controllers
         public IActionResult AgregarCompra([FromBody] CompraDTO compraDto)
         {
             var resultado = compraService.CrearCompra(compraDto);
-
-            if (resultado.Success)
+            if (!ModelState.IsValid)
             {
-                // Respuesta en caso de éxito
-                var respuesta = new { mensaje = resultado.Message };
-                return Ok(respuesta);
+                return BadRequest(ModelState);
             }
-            else
+            // Si el ModelState es válido, entonces llamamos al servicio para realizar más validaciones
+           
+            if (!resultado.Success)
             {
-                // Añadir errores al ModelState
+                // Añadir los errores del servicio al ModelState
                 foreach (var error in resultado.Errores)
                 {
                     ModelState.AddModelError(string.Empty, error);
                 }
-
-                // Devolver respuesta de error estructurada
+                // Retornar todos los errores (del ModelState original y los errores de resultado)
                 return BadRequest(ModelState);
             }
+            var respuesta = new { mensaje = resultado.Message };
+            return Ok(respuesta);
+
         }
         [HttpGet("ObtenerCompras")]
         public IActionResult ObtenerCompras() {

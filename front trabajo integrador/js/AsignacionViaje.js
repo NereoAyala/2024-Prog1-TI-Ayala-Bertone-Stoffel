@@ -13,14 +13,32 @@ document.getElementById('Asignacion-Viaje').addEventListener('submit', function 
         },
         body: JSON.stringify(datos)
     })
-    .then(response => response.json())
+    
+    .then(response => {
+        if (!response.ok) {
+            // Si la respuesta no es exitosa, intenta obtener el cuerpo del error
+            return response.json().then(body => {
+                // Verifica si hay errores en el cuerpo de la respuesta
+                if (body && body[""]) {
+                    // Muestra todos los mensajes de error en un alert
+                    alert('Errores:\n' + body[""].join('\n'));
+                } else {
+                    alert("Se ha producido un error desconocido.");
+                }
+                throw new Error('Errores en la solicitud'); // Lanza un error para manejar el catch
+            });
+        }
+
+        // Si la respuesta es exitosa, maneja el resultado
+        return response.json(); 
+    })
     .then(data => {
-        console.log(data); 
-        alert(data.mensaje);
+        alert(data.mensaje );
     })
     .catch(error => {
-        console.log('Error:', error);
-    });     
-    console.log('Datos enviados:', datos);
+        console.error('Fetch error:', error);
+    });
+
 
 });
+

@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace SistemaServices
 {
     public class ViajeService
-    {
+    {   
         public ResultadoEntity AgregarViaje(ViajeDTO viaje)
         {
             ResultadoEntity resultado = new ResultadoEntity() { Success = false };

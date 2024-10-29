@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function(event) {
+/*document.addEventListener("DOMContentLoaded", function(event) {
     console.info("Pruebas")
 });
 document.getElementById('clienteForm').addEventListener('submit', function (event) {
@@ -29,14 +29,52 @@ document.getElementById('clienteForm').addEventListener('submit', function (even
         },
         body: JSON.stringify(datos)
     })
-    .then(response => response.text())
+ 
+  .then(response => response.text()) 
+
     .then(data => {
-        console.log(data);
-       
-        alert(data);
+        alert(data); // Muestra el mensaje de éxito
     })
     .catch(error => {
-        console.log('Error:', error);
+        console.error('Fetch error:', error);
     });
-    console.log('Datos enviados:', datos);
-});
+   
+   
+});*/
+
+
+    function llenarTablaclientes() {
+        fetch(`http://localhost:5247/Cliente/ObtenerClientes`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Error en la red');
+                }
+                return response.json();
+            })
+            .then(data => {
+                const tablaclientes = document.getElementById('tabla-clientes');
+                tablaclientes.innerHTML = '';
+
+                data.forEach(cliente => {
+                    const fecha_nacimiento = new Date(cliente.fechaNacimiento).toLocaleDateString();
+                    const fila = document.createElement('tr');
+                    fila.innerHTML = `
+                    <td>${cliente.dniCliente}</td>
+                    <td>${cliente.nombre}</td>
+                    <td>${cliente.apellido}</td>
+                    <td>${cliente.email}</td>
+                    <td>${cliente.telefono}</td>
+                    <td>${cliente.latitud}</td>
+                    <td>${cliente.longitud}</td>
+                    <td>${fecha_nacimiento}</td>`;
+                    tablaclientes.appendChild(fila);
+                });
+            })
+            .catch(error => {
+                console.error('Error al obtener datos:', error);
+            });
+
+
+    }
+
+    document.addEventListener("DOMContentLoaded", llenarTablaclientes);
