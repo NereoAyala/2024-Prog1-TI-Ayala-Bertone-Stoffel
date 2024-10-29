@@ -71,6 +71,7 @@ namespace SistemaServices
                         cargaActual += capacidad;
                         codigosComprasAsignadas.Add(compra.IdCompra);
                         comprasYaAsignadas.Add(compra.IdCompra);
+                        CompraFiles.EscribirCompra(compra);
                     }
                 }
                 if (codigosComprasAsignadas.Any())//Si HAY ALGUNA COMPRA ASIGNADA RECIEN AHI CREO EL VIAJE SINO SERIA AL PEDO CREAR EL VIAJE
