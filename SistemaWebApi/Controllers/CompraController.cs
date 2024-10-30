@@ -5,6 +5,8 @@ using SistemaServices;
 
 namespace SistemaWebApi.Controllers
 {
+    [ApiController]
+    [Route("api/Compras")]
     public class CompraController : ControllerBase
     {
         private CompraService compraService = new CompraService();
@@ -14,7 +16,7 @@ namespace SistemaWebApi.Controllers
             compraService = new CompraService();
             resultado = new ResultadoEntity();
         }
-        [HttpPost("AgregarCompra")]
+        [HttpPost]
         public IActionResult AgregarCompra([FromBody] CompraDTO compraDto)
         {
             var resultado = compraService.CrearCompra(compraDto);
@@ -38,7 +40,7 @@ namespace SistemaWebApi.Controllers
             return Ok(respuesta);
 
         }
-        [HttpGet("ObtenerCompras")]
+        [HttpGet]
         public IActionResult ObtenerCompras() {
             List<CompraDTO> compras = compraService.ObtenerCompras();
             return Ok(compras);

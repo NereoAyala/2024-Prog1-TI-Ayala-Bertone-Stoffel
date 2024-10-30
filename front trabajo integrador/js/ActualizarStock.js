@@ -4,7 +4,7 @@ document.getElementById('formulario-actualizar-stock').addEventListener('submit'
     const id = document.getElementById('id').value;
     const stock = document.getElementById('stock').value;
     console.log('Datos obtenidos:', id, stock);
-    fetch(`http://localhost:5247/Producto/ActualizarStock/${id}`, {
+    fetch(`http://localhost:5247/api/Productos/ActualizarStock/${id}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'

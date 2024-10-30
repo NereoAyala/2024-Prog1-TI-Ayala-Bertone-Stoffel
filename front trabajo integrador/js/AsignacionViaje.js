@@ -6,7 +6,7 @@ document.getElementById('Asignacion-Viaje').addEventListener('submit', function 
         FechaEntregaDesde: fechaDesde,
         FechaEntregaHasta: fechaHasta
     };
-    fetch('http://localhost:5247/Viaje/AgregarViaje', {
+    fetch('http://localhost:5247/api/Viajes', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

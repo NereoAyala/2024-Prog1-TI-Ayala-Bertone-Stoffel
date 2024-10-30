@@ -12,7 +12,7 @@ document.getElementById('compraForm').addEventListener('submit', function(event)
         DniCliente: dni,
         FechaEntrega: fecha
     };
-    fetch('http://localhost:5247/AgregarCompra', {
+    fetch('http://localhost:5247/api/Compras', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

@@ -6,7 +6,7 @@ formularioStock.addEventListener('submit', function (event) {
     llenarTablaStock(limiteStock);
 });
 function llenarTablaStock(limiteStock) {
-    fetch(`http://localhost:5247/Producto/FiltrarProductos?limite=${limiteStock}`)
+    fetch(`http://localhost:5247/api/Productos/Filtrar?limite=${limiteStock}`)
         .then(response => {
             if (!response.ok) {
                 throw new Error('Error en la red');

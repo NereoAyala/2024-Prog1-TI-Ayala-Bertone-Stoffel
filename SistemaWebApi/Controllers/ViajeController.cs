@@ -6,11 +6,11 @@ using SistemaServices;
 namespace SistemaWebApi.Controllers
 {
     [ApiController]
-    [Route("Viaje")]
+    [Route("api/Viajes")]
     public class ViajeController : ControllerBase
     {
         private ViajeService service = new ViajeService();
-        [HttpPost("AgregarViaje")]
+        [HttpPost]
         public IActionResult AgregarViaje([FromBody] ViajeDTO viajeDTO)
         {
             if (!ModelState.IsValid)

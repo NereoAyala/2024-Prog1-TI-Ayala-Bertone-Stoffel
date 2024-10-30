@@ -6,12 +6,12 @@ using SistemaServices;
 namespace SistemaWebApi.Controllers
 {
     [ApiController]
-    [Route("Producto")]
+    [Route("api/Productos")]
     public class ProductoController : ControllerBase
     {
         ProductoService producto=new ProductoService();
 
-        [HttpPost("AgregarProducto")]
+        [HttpPost]
         public IActionResult AgregarProducto([FromBody]ProductoDTO productoDTO) 
         {
 
@@ -43,7 +43,7 @@ namespace SistemaWebApi.Controllers
 
             return Ok("Producto actualizado con éxito.");
         }
-        [HttpGet("FiltrarProductos")]
+        [HttpGet("Filtrar")]
         public IActionResult FiltrarProductos([FromQuery] int limite)
         {
             //hacer que se muestren los productos con stock menor o igual al limite

@@ -8,12 +8,12 @@ using SistemaServices;
 namespace SistemaWebApi.Controllers
 {
     [ApiController]
-    [Route("Cliente")]
+    [Route("api/Clientes")]
     public class ClienteController : ControllerBase
     {
         ClienteService clienteService = new ClienteService();
 
-        [HttpPost("AgregarCliente")]
+        [HttpPost]
         public IActionResult AgregarCliente([FromBody] ClienteDTO clienteDTO)
         {
             if (clienteDTO.DniCliente <= 0)
@@ -37,7 +37,7 @@ namespace SistemaWebApi.Controllers
             clienteService.AgregarCliente(clienteDTO);
             return Ok("Cliente agregado con éxito.");
         }
-        [HttpDelete("EliminarCliente/{id}")]
+        [HttpDelete("{id}")]
         public IActionResult EliminarCliente(int id)
         {
             var cliente = clienteService.EliminarCliente(id);
@@ -48,7 +48,7 @@ namespace SistemaWebApi.Controllers
 
             return Ok("Cliente eliminado con éxito.");
         }
-        [HttpPut("ActualizarCliente/{id}")]
+        [HttpPut("{id}")]
         public IActionResult ActualizarCliente(int id, [FromBody] ClienteDTO cliente)
         {
             if (!ModelState.IsValid)
@@ -64,7 +64,7 @@ namespace SistemaWebApi.Controllers
 
             return Ok("Cliente actualizado con éxito.");
         }
-        [HttpGet("ObtenerClientes")]
+        [HttpGet]
         public IActionResult ObtenerClientes()
         {
             List<ClienteDTO> clientes = clienteService.ObtenerListaClientes();
