@@ -25,18 +25,15 @@ namespace SistemaWebApi.Controllers
             {
                 return NotFound(new { message = "Producto no encontrado", producto });
             }
-            else
+            if ((producto.StockDisponible - compraDto.CantidadComprado) < 0)
             {
-                if ((producto.StockDisponible - compraDto.CantidadComprado) < 0)
-                {
-                    return BadRequest(new { message = "No se puede realizar la compra no hay stock suficiente", producto });
-                }
+                return BadRequest(new { message = "No se puede realizar la compra no hay stock suficiente", producto });
             }
             List<ClienteEntity> clientes = ClienteFiles.LeerClientesDesdeJson();
             var cliente = clientes.Find(x => x.DniCliente == compraDto.DniCliente);
             if (cliente == null)
             {
-               return NotFound(new { message = "Cliente no encontrado", cliente = cliente });
+                return NotFound(new { message = "Cliente no encontrado", cliente });
             }
             compraService.CrearCompra(compraDto);
             return Ok(new { message = "Compra agregada con éxito", compra = compraDto });

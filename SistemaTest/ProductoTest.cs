@@ -12,30 +12,26 @@ namespace SistemaTest
 {
     public class ProductoTest
     {
-        // ProductoService productoService=new ProductoService();
         private ProductoService productoService;
-
         [SetUp]
         public void Setup()
         {
             productoService = new ProductoService();
         }
-
-        private ProductoDTO CrearProductoValido() 
+        private ProductoDTO CrearProductoValido()
         {
             return new ProductoDTO
             {
                 Nombre = "Hamburguesa",
                 Marca = "Paty",
-                StockDisponible=10,
-                StockMinimo=5,
-                PrecioUnitario=2000,
-                AltoCaja=5,
-                AnchoCaja=5,
+                StockDisponible = 10,
+                StockMinimo = 5,
+                PrecioUnitario = 2000,
+                AltoCaja = 5,
+                AnchoCaja = 5,
                 ProfundidadCaja = 5
             };
         }
-        //crear producto invalido
         private ProductoDTO CrearProductoInvalido()
         {
             return new ProductoDTO
@@ -58,76 +54,39 @@ namespace SistemaTest
             var productoDTO = CrearProductoValido();
 
             var resultado = controller.AgregarProducto(productoDTO) as OkObjectResult;
-
-            Assert.IsNotNull(resultado);
-            Assert.AreEqual(200, resultado.StatusCode);
-            Assert.AreEqual(true, (bool)resultado.Value.GetType().GetProperty("success").GetValue(resultado.Value));
-        }
-      
-        //public void AgregarProducto_OK_DeberiaAgregarseProducto() 
-        //{
-        //    var controller=new ProductoController();
-        //    var productoDTO=CrearProductoValido();
-
-        //    var resultado = controller.AgregarProducto(productoDTO) as OkObjectResult;
-
-        //    Assert.IsNotNull(resultado);
-        //    //Assert.AreEqual(200, resultado.StatusCode);
-        //    //Assert.AreEqual("Producto agregado con éxito.", resultado.Value);
-
-        //}
-        //[Test]
-        //public void AgregarProducto_FaltaNombre_DeberiaDarBadRequest()
-        //{
-        //    //hacer que el test falle si se crea un producto sin nombre
-        //    var controller = new ProductoController();
-        //    var productoDTO = CrearProductoValido();
-        //    productoDTO.Nombre = string.Empty;
-
-        //    var resultado = controller.AgregarProducto(productoDTO) as BadRequestObjectResult;
-        //    //testear que el resultado sea un BadRequest
-        //    Assert.IsNotNull(resultado);
-        //    Assert.That(resultado.StatusCode, Is.EqualTo(400));
-        //    Assert.IsTrue(((SerializableError)resultado.Value).ContainsKey("Nombre"));
-        //}
-
-        //public void AgregarProducto_FaltaNombre_DeberiaDarFalse() 
-        //{
-        //    var controller=new ProductoController();
-        //    var productoDTO = CrearProductoValido();
-        //    productoDTO.Nombre = null;
-
-        //    var resultado = controller.AgregarProducto(productoDTO) as BadRequestObjectResult;
-
-        //    Assert.IsNotNull(resultado);
-        //    Assert.AreEqual(400, resultado.StatusCode);
-
-        //    var mensajeError = resultado.Value as SerializableError;
-        //    Assert.IsTrue(mensajeError.ContainsKey("NombreProducto"));
-        //}
-
-        public void ActualizarStock_OK_DeberiaActualizarStock()
-        {
-            var controller = new ProductoController();
-            var productoDTO = CrearProductoValido();
-            controller.AgregarProducto(productoDTO);
-            var producto = productoService.ActualizarStockProducto(1, 5);
-
-            var resultado = controller.ActualizarStock(producto.IdProducto, 5) as OkObjectResult;
-
+            var productoDevuelto = resultado.Value.GetType().GetProperty("productoDTO").GetValue(resultado.Value) as ProductoDTO;
+            Assert.AreEqual(productoDTO, productoDevuelto);
             Assert.IsNotNull(resultado);
             Assert.AreEqual(200, resultado.StatusCode);
             Assert.AreEqual(true, (bool)resultado.Value.GetType().GetProperty("success").GetValue(resultado.Value));
         }
         [Test]
-        public void ActualizarStock_NoExisteProducto_DeberiaDarFalse()
+        public void ActualizarStock_OK_DeberiaActualizarStock()
         {
             var controller = new ProductoController();
             var productoDTO = CrearProductoValido();
             controller.AgregarProducto(productoDTO);
-
-            var resultado = controller.ActualizarStock(90, 5) as NotFoundObjectResult;
-
+            List<ProductoDTO> listaProductosDTO = productoService.ObtenerListaProductos();
+            int index = listaProductosDTO.Count();
+            var resultado = controller.ActualizarStock(index, 5) as OkObjectResult;
+            productoDTO.StockDisponible += 5;
+            var productoDevuelto = resultado.Value.GetType().GetProperty("Producto").GetValue(resultado.Value) as ProductoDTO;
+            Assert.AreEqual(productoDTO.StockDisponible, productoDevuelto.StockDisponible);
+            Assert.IsNotNull(resultado);
+            Assert.AreEqual(200, resultado.StatusCode);
+            Assert.AreEqual(true, (bool)resultado.Value.GetType().GetProperty("success").GetValue(resultado.Value));
+        }
+        [Test]
+        public void ActualizarStock_NotFound_NoDeberiaActualizarStock()
+        {
+            var controller = new ProductoController();
+            var productoDTO = CrearProductoValido();
+            controller.AgregarProducto(productoDTO);
+            List<ProductoDTO> listaProductosDTO = productoService.ObtenerListaProductos();
+            int index = listaProductosDTO.Count();
+            var resultado = controller.ActualizarStock(index + 1000, 5) as NotFoundObjectResult;
+            var productoDevuelto = resultado.Value.GetType().GetProperty("Producto").GetValue(resultado.Value) as ProductoDTO;
+            Assert.AreEqual(null, productoDevuelto);
             Assert.IsNotNull(resultado);
             Assert.AreEqual(404, resultado.StatusCode);
             Assert.AreEqual(false, (bool)resultado.Value.GetType().GetProperty("success").GetValue(resultado.Value));

@@ -11,17 +11,17 @@ using System.Threading.Tasks;
 namespace SistemaServices
 {
     public class ViajeService
-    {   
+    {
         public void AgregarViaje(ViajeDTO viaje)
         {
             List<CompraEntity> compras = CompraFiles.LeerCompraDesdeJson();
-            List<CamionetaEntity> camionetas = CamionetaFiles.LeerCamionetasDesdeJson().OrderBy(x => x.DistanciaMax).ThenBy(x => x.TamañoCarga).ToList(); //TOMO LAS CAMIONETAS Y LAS ORDENO PRIMERO POR DISTANCIA Y LUEGO POR CAPACIDAD DE CARGA 
-            List<int> comprasYaAsignadas = new List<int>();//ESTA LISTA ES PARA IR VIENDO LAS COMPRAS YA ASIGANDAS ENTONCES EN LA SEGUNDA CAMIONETA YA NOS SE TIENEN EN CUENTA LAS COMPRAS QUE YA SE ASIGNARON A LA PRIMER CAMIONETA
+            List<CamionetaEntity> camionetas = CamionetaFiles.LeerCamionetasDesdeJson().OrderBy(x => x.DistanciaMax).ThenBy(x => x.TamañoCarga).ToList();
+            List<int> comprasYaAsignadas = new List<int>();
             foreach (var camioneta in camionetas)
             {
                 double cargaActual = 0;
                 List<int> codigosComprasAsignadas = new List<int>();
-                var comprasDisponibles = compras.Where(x => x.EstadoCompra == Enums.EstadoCompra.Open && !comprasYaAsignadas.Contains(x.IdCompra)).ToList();//FILTRO LAS COMPRAS POR OPEN Y POR LAS QUE NO ESTEN LA LISTA DE COMPRAS YA ASIGNADAS
+                var comprasDisponibles = compras.Where(x => x.EstadoCompra == Enums.EstadoCompra.Open && !comprasYaAsignadas.Contains(x.IdCompra)).ToList();
 
                 foreach (var compra in comprasDisponibles)
                 {
@@ -37,7 +37,7 @@ namespace SistemaServices
                         CompraFiles.EscribirCompra(compra);
                     }
                 }
-                if (codigosComprasAsignadas.Any())//Si HAY ALGUNA COMPRA ASIGNADA RECIEN AHI CREO EL VIAJE SINO SERIA AL PEDO CREAR EL VIAJE
+                if (codigosComprasAsignadas.Any())
                 {
                     var viajeTemp = new ViajeEntity()
                     {
@@ -46,7 +46,7 @@ namespace SistemaServices
                         FechaEntregaHasta = viaje.FechaEntregaHasta,
                         PorcentajeCarga = (int)((cargaActual / camioneta.TamañoCarga) * 100),
                         ListadoCodigosCompras = codigosComprasAsignadas,
-                        FechaCreacion=DateTime.Now,                       
+                        FechaCreacion = DateTime.Now,
                     };
                     ViajeFiles.EscribirViaje(viajeTemp);
                 }
@@ -54,7 +54,7 @@ namespace SistemaServices
             foreach (var compra in compras.Where(x => x.EstadoCompra == Enums.EstadoCompra.Open))
             {
                 compra.FechaEntrega = compra.FechaEntrega.AddDays(14);
-            }  
+            }
         }
     }
 }

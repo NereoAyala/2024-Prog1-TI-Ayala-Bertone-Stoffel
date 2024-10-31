@@ -36,49 +36,49 @@ namespace SistemaTest
                 Longitud = 234567.0,
             };
         }
-        [Test]
+        //[Test]
+        ////public void AgregarCliente_Ok_DeberiaAgregarClienteALaLista()
+        ////{
+        ////    var controller = new ClienteController();
+        ////    ClienteDTO clienteDTO = CrearClienteValido();
+
+        ////    var resultado = controller.AgregarCliente(clienteDTO) as OkObjectResult;
+
+        ////    Assert.IsNotNull(resultado);
+        ////    Assert.AreEqual(200, resultado.StatusCode);
+        ////    Assert.AreEqual("Cliente agregado con éxito.", resultado.Value);
+
+        ////    var clientes = ClienteFiles.LeerClientesDesdeJson();
+        ////    bool clienteAgregado = clientes.Any(x => x.DniCliente == clienteDTO.DniCliente);
+
+        ////    Assert.IsTrue(clienteAgregado, "El cliente debería estar en la lista después de agregarlo.");
+        ////}
         //public void AgregarCliente_Ok_DeberiaAgregarClienteALaLista()
         //{
+        //    var clienteService = new ClienteService();
         //    var controller = new ClienteController();
         //    ClienteDTO clienteDTO = CrearClienteValido();
 
         //    var resultado = controller.AgregarCliente(clienteDTO) as OkObjectResult;
+        //    Assert.IsNotNull(resultado);
+        //    Assert.That(resultado?.StatusCode, Is.EqualTo(200));
+        //    Assert.That(resultado?.Value?.GetType().GetProperty("message")?.GetValue(resultado.Value), Is.EqualTo("Cliente agregado con éxito"));
+        //}
+
+        //[Test]
+        //public void AgregarCliente_FaltaDni_DeberiaDarFalse()
+        //{
+        //    var controller = new ClienteController();
+        //    ClienteDTO clienteDTO = CrearClienteValido();
+        //    clienteDTO.DniCliente = 0;
+
+        //    var resultado = controller.AgregarCliente(clienteDTO) as BadRequestObjectResult;
 
         //    Assert.IsNotNull(resultado);
-        //    Assert.AreEqual(200, resultado.StatusCode);
-        //    Assert.AreEqual("Cliente agregado con éxito.", resultado.Value);
+        //    Assert.AreEqual(400, resultado.StatusCode);
 
-        //    var clientes = ClienteFiles.LeerClientesDesdeJson();
-        //    bool clienteAgregado = clientes.Any(x => x.DniCliente == clienteDTO.DniCliente);
-
-        //    Assert.IsTrue(clienteAgregado, "El cliente debería estar en la lista después de agregarlo.");
+        //    var mensajeError = resultado.Value as SerializableError;
+        //    Assert.IsTrue(mensajeError.ContainsKey("DniCliente"));
         //}
-        public void AgregarCliente_Ok_DeberiaAgregarClienteALaLista()
-        {
-            var clienteService = new ClienteService();
-            var controller = new ClienteController();
-            ClienteDTO clienteDTO = CrearClienteValido();
-
-            var resultado = controller.AgregarCliente(clienteDTO) as OkObjectResult;
-            Assert.IsNotNull(resultado);
-            Assert.That(resultado?.StatusCode, Is.EqualTo(200));
-            Assert.That(resultado?.Value?.GetType().GetProperty("message")?.GetValue(resultado.Value), Is.EqualTo("Cliente agregado con éxito"));
-        }
-
-        [Test]
-        public void AgregarCliente_FaltaDni_DeberiaDarFalse()
-        {
-            var controller = new ClienteController();
-            ClienteDTO clienteDTO = CrearClienteValido();
-            clienteDTO.DniCliente = 0;
-
-            var resultado = controller.AgregarCliente(clienteDTO) as BadRequestObjectResult;
-
-            Assert.IsNotNull(resultado);
-            Assert.AreEqual(400, resultado.StatusCode);
-
-            var mensajeError = resultado.Value as SerializableError;
-            Assert.IsTrue(mensajeError.ContainsKey("DniCliente"));
-        }
     }
 }

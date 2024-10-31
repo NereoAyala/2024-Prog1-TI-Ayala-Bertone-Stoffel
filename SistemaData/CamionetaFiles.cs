@@ -5,7 +5,8 @@ namespace SistemaData
 {
     public class CamionetaFiles
     {
-        private static string CamionetaFile = Path.GetFullPath("..//SistemaData//Listas//Camioneta.json");
+        //private static string CamionetaFile = Path.GetFullPath("..//SistemaData//Listas//Camioneta.json");
+        private static string CamionetaFile = "Camioneta.json";
         public static List<CamionetaEntity> LeerCamionetasDesdeJson()
         {
             if (File.Exists($"{CamionetaFile}"))

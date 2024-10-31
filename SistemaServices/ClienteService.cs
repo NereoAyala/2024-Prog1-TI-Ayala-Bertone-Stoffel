@@ -19,19 +19,19 @@ namespace SistemaServices
                 Nombre = cliente.Nombre,
                 Apellido = cliente.Apellido,
                 Email = cliente.Email,
-                FechaNacimiento = cliente.FechaNacimiento, // Usar solo la parte de la fecha DATE
+                FechaNacimiento = cliente.FechaNacimiento,
                 Telefono = cliente.Telefono,
                 FechaCreacion = DateTime.Now,
-                localizacionCliente=new Localizacion 
+                localizacionCliente = new Localizacion
                 {
-                    LatitudCliente=cliente.Latitud,
-                    LongitudCliente= cliente.Longitud,
+                    LatitudCliente = cliente.Latitud,
+                    LongitudCliente = cliente.Longitud,
                 }
             };
             clientes.Add(clienteNuevo);
             ClienteFiles.EscribirClienteaJson(clienteNuevo);
         }
-        public ClienteEntity EliminarCliente(int id)
+        public ClienteDTO EliminarCliente(int id)
         {
             List<ClienteEntity> clientes = ClienteFiles.LeerClientesDesdeJson();
             ClienteEntity cliente = clientes.Find(x => x.IdCliente == id);
@@ -40,10 +40,21 @@ namespace SistemaServices
                 return null;
             }
             cliente.FechaEliminacion = DateTime.Now;
+            ClienteDTO clienteDTO = new ClienteDTO
+            {
+                DniCliente = cliente.DniCliente,
+                Apellido = cliente.Apellido,
+                Email = cliente.Email,
+                FechaNacimiento = cliente.FechaNacimiento,
+                Latitud = cliente.localizacionCliente.LatitudCliente,
+                Longitud = cliente.localizacionCliente.LongitudCliente,
+                Nombre = cliente.Nombre,
+                Telefono = cliente.Telefono
+            };
             ClienteFiles.EscribirClienteaJson(cliente);
-            return cliente;
+            return clienteDTO;
         }
-        public ClienteEntity ActualizarCliente(int id, ClienteDTO clienteDTO)
+        public ClienteDTO ActualizarCliente(int id, ClienteDTO clienteDTO)
         {
             List<ClienteEntity> clientes = ClienteFiles.LeerClientesDesdeJson();
             ClienteEntity cliente = clientes.Find(x => x.IdCliente == id);
@@ -64,20 +75,20 @@ namespace SistemaServices
             };
             cliente.FechaEliminacion = null;
             ClienteFiles.EscribirClienteaJson(cliente);
-            return cliente;
+            return clienteDTO;
         }
         public List<ClienteDTO> ObtenerListaClientes()
         {
             List<ClienteDTO> clienteDTOs = new List<ClienteDTO>();
-            List<ClienteEntity> clientes = ClienteFiles.LeerClientesDesdeJson().Where(x=>x.FechaEliminacion==null).ToList();
+            List<ClienteEntity> clientes = ClienteFiles.LeerClientesDesdeJson().Where(x => x.FechaEliminacion == null).ToList();
             foreach (var item in clientes)
             {
                 ClienteDTO clienteDTO = new ClienteDTO
                 {
                     Apellido = item.Apellido,
                     Email = item.Email,
-                    Latitud=item.localizacionCliente.LatitudCliente,
-                    Longitud=item.localizacionCliente.LongitudCliente,
+                    Latitud = item.localizacionCliente.LatitudCliente,
+                    Longitud = item.localizacionCliente.LongitudCliente,
                     Nombre = item.Nombre,
                     Telefono = item.Telefono,
                     FechaNacimiento = item.FechaNacimiento,

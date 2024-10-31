@@ -10,7 +10,8 @@ namespace SistemaData
 {
     public class ViajeFiles
     {
-        private static string ViajeFile = Path.GetFullPath("..//SistemaData//Listas//Viaje.json");
+        //private static string ViajeFile = Path.GetFullPath("..//SistemaData//Listas//Viaje.json");
+        private static string ViajeFile = "Viaje.json";
         public static List<ViajeEntity> LeerViajesDesdeJson()
         {
             if (File.Exists($"{ViajeFile}"))

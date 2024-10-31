@@ -10,7 +10,8 @@ namespace SistemaData
 {
     public class CompraFiles
     {
-        private static string CompraFile = Path.GetFullPath("..//SistemaData//Listas//Compra.json");
+        //private static string CompraFile = Path.GetFullPath("..//SistemaData//Listas//Compra.json");
+        private static string CompraFile = "Compra.json";
         public static List<CompraEntity> LeerCompraDesdeJson()
         {
             if (File.Exists($"{CompraFile}"))

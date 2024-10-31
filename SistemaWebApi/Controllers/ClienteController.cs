@@ -9,7 +9,7 @@ namespace SistemaWebApi.Controllers
 {
 
     [ApiController]
-    [Route("[controller]")] //esto lo tuve que cambiar si o si
+    [Route("[controller]")]
     public class ClienteController : ControllerBase
     {
         ClienteService clienteService = new ClienteService();

@@ -29,20 +29,30 @@ namespace SistemaServices
             productos.Add(ProductoEntity);
             ProductoFiles.EscribirProducto(ProductoEntity);
         }
-        public ProductoEntity ActualizarStockProducto(int id,int stockNuevo) 
+        public ProductoDTO ActualizarStockProducto(int id, int stockNuevo)
         {
             List<ProductoEntity> productos = ProductoFiles.LeerProductosDesdeJson();
-            ProductoEntity producto = productos.FirstOrDefault(x=>x.IdProducto==id);
-            if (producto==null)
+            ProductoEntity producto = productos.FirstOrDefault(x => x.IdProducto == id);
+            if (producto == null)
             {
                 return null;
             }
-            producto.StockDisponible+=stockNuevo;
+            ProductoDTO productoDTO = new ProductoDTO
+            {
+                Nombre = producto.Nombre,
+                Marca = producto.Marca,
+                PrecioUnitario = producto.PrecioUnitario,
+                StockMinimo = producto.StockMinimo,
+                AltoCaja = producto.AltoCaja,
+                AnchoCaja = producto.AnchoCaja,
+                ProfundidadCaja = producto.ProfundidadCaja
+            };
+            producto.StockDisponible += stockNuevo;
+            productoDTO.StockDisponible = producto.StockDisponible;
             producto.FechaActualizacion = DateTime.Now;
             ProductoFiles.EscribirProducto(producto);
-            return producto;
+            return productoDTO;
         }
-
         public List<ProductoDTO> ObtenerListaProductos()
         {
             List<ProductoEntity> productos = ProductoFiles.LeerProductosDesdeJson().Where(x => x.FechaEliminacion == null).ToList();
@@ -51,7 +61,7 @@ namespace SistemaServices
             {
                 ProductoDTO productoDTO = new ProductoDTO
                 {
-                    
+
                     Nombre = producto.Nombre,
                     Marca = producto.Marca,
                     AltoCaja = producto.AltoCaja,
@@ -60,17 +70,15 @@ namespace SistemaServices
                     PrecioUnitario = producto.PrecioUnitario,
                     StockDisponible = producto.StockDisponible,
                     StockMinimo = producto.StockMinimo,
-                    
+
                 };
                 productosDTO.Add(productoDTO);
             }
             return productosDTO;
         }
-
-        //hacer que se pueda filtrar los productos por la cantidad de stock ingresando un numero limite
         public List<ProductoDTO> FiltrarProductosPorStock(int stock)
         {
-            List<ProductoEntity> productos = ProductoFiles.LeerProductosDesdeJson().Where(x=>x.FechaEliminacion==null).ToList();
+            List<ProductoEntity> productos = ProductoFiles.LeerProductosDesdeJson().Where(x => x.FechaEliminacion == null).ToList();
             List<ProductoDTO> productosDTO = new List<ProductoDTO>();
             foreach (var producto in productos)
             {

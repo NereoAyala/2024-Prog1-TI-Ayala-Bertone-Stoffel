@@ -13,6 +13,7 @@ namespace SistemaTest
     public class CompraTest
     {
         CompraService compraservice = new CompraService();
+        ProductoService productoService = new ProductoService();
         [SetUp]
         public void Setup()
         {
@@ -87,20 +88,26 @@ namespace SistemaTest
         public void TestCrearCompra_Ok_DeberiaAgregarCompra()
         {
             var controller = new CompraController();
+            CargarProductos();
             var compraDTO = new CompraDTO
             {
-                CodProducto = 1,
                 DniCliente = 46218295,
                 CantidadComprado = 2,
                 FechaEntrega = DateTime.Now
             };
-
-            CargarProductos();
-
+            List<ProductoDTO> listaProductosDto = productoService.ObtenerListaProductos();
+            int id = listaProductosDto.Count();
+            compraDTO.CodProducto = id;
             var resultado = controller.AgregarCompra(compraDTO) as OkObjectResult;
-
+            var CompraDevuelto = resultado.Value.GetType().GetProperty("compra").GetValue(resultado.Value) as CompraDTO;
+            var message = resultado.Value.GetType().GetProperty("message").GetValue(resultado.Value).ToString();
             Assert.IsNotNull(resultado);
             Assert.AreEqual(200, resultado.StatusCode);
+            Assert.AreEqual(compraDTO.CodProducto, CompraDevuelto.CodProducto);
+            Assert.AreEqual(compraDTO.DniCliente, CompraDevuelto.DniCliente);
+            Assert.AreEqual(compraDTO.CantidadComprado, CompraDevuelto.CantidadComprado);
+            Assert.AreEqual(compraDTO.FechaEntrega, CompraDevuelto.FechaEntrega);
+            Assert.AreEqual("Compra agregada con éxito", message);
 
             var compras = CompraFiles.LeerCompraDesdeJson();
             var compraAgregada = compras.FirstOrDefault(x => x.DniCliente == compraDTO.DniCliente && x.CodProducto == compraDTO.CodProducto);
@@ -109,47 +116,70 @@ namespace SistemaTest
             Assert.AreEqual(compraDTO.CantidadComprado, compraAgregada.CantidadComprado);
         }
         [Test]
-        public void CrearCompra_FaltaDNI_DeberiaDarError()
+        public void TestCrearCompra_NotFound_NoDeberiaAgregarCompra()
         {
             var controller = new CompraController();
-            var compraDTO = new CompraDTO
-            {
-                CodProducto = 1,
-                DniCliente = 0,
-                CantidadComprado = 2,
-                FechaEntrega = DateTime.Now
-            };
-
             CargarProductos();
-            var resultado = controller.AgregarCompra(compraDTO) as BadRequestObjectResult;
-
-            Assert.IsNotNull(resultado);
-            Assert.AreEqual(400, resultado.StatusCode);
-
-            var errores = resultado.Value as SerializableError;
-            Assert.IsNotNull(errores);//PODRIA SACARLO
-        }
-
-        [Test]
-        public void CrearCompra_FaltaCodProducto_DeberiaDarError()
-        {
-            var controller = new CompraController();
             var compraDTO = new CompraDTO
             {
-                CodProducto = 0,
                 DniCliente = 46218295,
                 CantidadComprado = 2,
                 FechaEntrega = DateTime.Now
             };
-
+            List<ProductoDTO> listaProductosDto = productoService.ObtenerListaProductos();
+            int id = listaProductosDto.Count();
+            compraDTO.CodProducto = id + 10;
+            var resultado = controller.AgregarCompra(compraDTO) as NotFoundObjectResult;
+            var productoDevuelto = resultado.Value.GetType().GetProperty("producto").GetValue(resultado.Value) as ProductoDTO;
+            var message = resultado.Value.GetType().GetProperty("message").GetValue(resultado.Value).ToString();
+            Assert.IsNotNull(resultado);
+            Assert.AreEqual(404, resultado.StatusCode);
+            Assert.AreEqual(null, productoDevuelto);
+            Assert.AreEqual("Producto no encontrado", message);
+        }
+        [Test]
+        public void TestCrearCompra_BadRequest_NoDeberiaAgregarCompra()
+        {
+            var controller = new CompraController();
             CargarProductos();
+            var compraDTO = new CompraDTO
+            {
+                DniCliente = 46218295,
+                CantidadComprado = 10000,
+                FechaEntrega = DateTime.Now
+            };
+            List<ProductoDTO> listaProductosDto = productoService.ObtenerListaProductos();
+            int id = listaProductosDto.Count();
+            compraDTO.CodProducto = id;
             var resultado = controller.AgregarCompra(compraDTO) as BadRequestObjectResult;
-
+            var productoDevuelto = resultado.Value.GetType().GetProperty("producto").GetValue(resultado.Value) as ProductoDTO;
+            var message = resultado.Value.GetType().GetProperty("message").GetValue(resultado.Value).ToString();
             Assert.IsNotNull(resultado);
             Assert.AreEqual(400, resultado.StatusCode);
-
-            var errores = resultado.Value as SerializableError;
-            Assert.IsNotNull(errores);//PODRIA SACARLO
+            Assert.AreEqual(null, productoDevuelto);
+            Assert.AreEqual("No se puede realizar la compra no hay stock suficiente", message);
+        }
+        [Test]
+        public void TestCrearCompra_NotFoundCliente_NoDeberiaAgregarCompra()
+        {
+            var controller = new CompraController();
+            CargarProductos();
+            var compraDTO = new CompraDTO
+            {
+                DniCliente = 541144141,
+                CantidadComprado = 2,
+                FechaEntrega = DateTime.Now
+            };
+            List<ProductoDTO> listaProductosDto = productoService.ObtenerListaProductos();
+            int id = listaProductosDto.Count();
+            compraDTO.CodProducto = id;
+            var resultado = controller.AgregarCompra(compraDTO) as NotFoundObjectResult;
+            var clienteDevuelto = resultado.Value.GetType().GetProperty("cliente").GetValue(resultado.Value) as ClienteDTO;
+            var message = resultado.Value.GetType().GetProperty("message").GetValue(resultado.Value).ToString();
+            Assert.IsNotNull(resultado);
+            Assert.AreEqual(404, resultado.StatusCode);
+            Assert.AreEqual(null, clienteDevuelto);
+            Assert.AreEqual("Cliente no encontrado", message);
         }
     }
 }
