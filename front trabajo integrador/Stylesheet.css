@@ -30,7 +30,7 @@ footer {
     text-align: center;
     padding: 5px;
     width: 100%;
-    
+
     bottom: 0;
     margin-top: auto;
     position: relative;
@@ -42,7 +42,6 @@ footer {
 header h1 {
     margin: 5px;
 }
-
 
 .navbar ul {
     list-style: none;
@@ -74,6 +73,7 @@ header h1 {
     bottom: -5px;
     left: 0;
 }
+
 .main {
     display: flex;
     flex-direction: row;
@@ -85,6 +85,7 @@ header h1 {
     gap: 10px;
     margin-bottom: 50px;
 }
+
 .box {
     border-radius: 50px;
     display: flex;
@@ -95,13 +96,14 @@ header h1 {
     transition: transform 0.3s;
     box-shadow: inset;
 }
+
 .box:hover {
     transform: scale(1.05);
 }
-.boton {
-    
- background: rgba(230, 237, 237, 0.1);
 
+.boton {
+
+    background: rgba(230, 237, 237, 0.1);
     backdrop-filter: blur(15px);
     border: none;
     color: #ffffff;
@@ -117,11 +119,14 @@ header h1 {
     justify-content: center;
     align-items: center;
 }
+
 .boton:hover {
     transform: translateY(-2px);
-   box-shadow: 0 4px 7px rgba(209, 212, 212, 0.5);
+    box-shadow: 0 4px 7px rgba(209, 212, 212, 0.5);
 }
-.boton a, .boton-back a {
+
+.boton a,
+.boton-back a {
     text-decoration: none;
     color: inherit;
     width: 100%;
@@ -154,7 +159,8 @@ form {
 }
 
 input,
-textarea, .boton-back {
+textarea,
+.boton-back {
     padding: 10px;
     border: none;
     border-radius: 5px;
@@ -166,12 +172,13 @@ textarea, .boton-back {
     background: rgba(69, 173, 173, 0.1);
     backdrop-filter: blur(10px);
 }
+
 input::placeholder,
 textarea::placeholder {
     color: #ffffff;
 }
 
-input[type="submit"]{
+input[type="submit"] {
     border: none;
     color: #ffffff;
     padding: 15px;
@@ -193,16 +200,17 @@ input[type="submit"]{
     height: 40px;
     border-radius: 60px;
     align-self: start;
-    transition: all 0.3s ease;    
+    transition: all 0.3s ease;
 }
-.boton-back:hover{
-   
-    background:#ea81ab;
+
+.boton-back:hover {
+
+    background: #ea81ab;
     transform: translateY(-2px);
 }
 
 input[type="submit"]:hover {
-    background:#df8041;
+    background: #df8041;
     transform: translateY(-2px);
 }
 
@@ -212,8 +220,8 @@ input[type="submit"]:hover {
     justify-content: center;
     align-items: center;
     flex-grow: 1;
-   
 }
+
 table {
     border-collapse: collapse;
     width: 70%;
@@ -223,12 +231,15 @@ table {
     border-radius: 20px;
     overflow: hidden;
 }
-th, td {
+
+th,
+td {
     border: 1px solid #ffffff;
     padding: 8px;
     text-align: center;
     color: #ffffff;
 }
+
 @media screen and (max-width: 768px) {
     .main {
         flex-direction: column;
@@ -278,5 +289,4 @@ th, td {
     .main-form {
         padding: 10px;
     }
-
 }

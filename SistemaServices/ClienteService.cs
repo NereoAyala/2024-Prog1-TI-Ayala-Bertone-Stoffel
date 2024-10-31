@@ -55,6 +55,8 @@ namespace SistemaServices
             cliente.Nombre = clienteDTO.Nombre;
             cliente.Apellido = clienteDTO.Apellido;
             cliente.Email = clienteDTO.Email;
+            cliente.FechaNacimiento = clienteDTO.FechaNacimiento;
+            cliente.Telefono = clienteDTO.Telefono;
             cliente.localizacionCliente = new Localizacion()
             {
                 LatitudCliente = clienteDTO.Latitud,
