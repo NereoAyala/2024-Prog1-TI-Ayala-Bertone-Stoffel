@@ -6,7 +6,6 @@ namespace SistemaData
     public class CamionetaFiles
     {
         private static string CamionetaFile = Path.GetFullPath("..//SistemaData//Listas//Camioneta.json");
-
         public static List<CamionetaEntity> LeerCamionetasDesdeJson()
         {
             if (File.Exists($"{CamionetaFile}"))
@@ -25,14 +24,14 @@ namespace SistemaData
 
             if (camioneta.IdCamioneta == 0)
             {
-                camioneta.IdCamioneta = camionetas.Any() ? camionetas.Max(x=>x.IdCamioneta) +1 : 1;
+                camioneta.IdCamioneta = camionetas.Any() ? camionetas.Max(x => x.IdCamioneta) + 1 : 1;
             }
             else
             {
                 camionetas.RemoveAll(x => x.IdCamioneta == camioneta.IdCamioneta);
             }
             camionetas.Add(camioneta);
-            camionetas = camionetas.OrderBy(x=>x.IdCamioneta).ToList();
+            camionetas = camionetas.OrderBy(x => x.IdCamioneta).ToList();
             string json = JsonConvert.SerializeObject(camionetas, Formatting.Indented);
             File.WriteAllText(CamionetaFile, json);
         }

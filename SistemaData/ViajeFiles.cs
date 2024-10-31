@@ -11,7 +11,6 @@ namespace SistemaData
     public class ViajeFiles
     {
         private static string ViajeFile = Path.GetFullPath("..//SistemaData//Listas//Viaje.json");
-      
         public static List<ViajeEntity> LeerViajesDesdeJson()
         {
             if (File.Exists($"{ViajeFile}"))
@@ -30,7 +29,7 @@ namespace SistemaData
 
             if (viaje.IdViaje == 0)
             {
-                viaje.IdViaje = viajes.Any()?viajes.Max(x=>x.IdViaje)+1:1;
+                viaje.IdViaje = viajes.Any() ? viajes.Max(x => x.IdViaje) + 1 : 1;
             }
             else
             {
