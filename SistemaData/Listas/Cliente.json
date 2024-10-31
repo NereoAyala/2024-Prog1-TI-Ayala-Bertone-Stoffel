@@ -21,12 +21,12 @@
     "Nombre": "Roberto",
     "Apellido": "Carlos",
     "Email": "robertito@gmail.com",
-    "Telefono": "234421",
+    "Telefono": "3492512868",
     "localizacionCliente": {
-      "LatitudCliente": 45.0,
-      "LongitudCliente": -10.0
+      "LatitudCliente": 89.0,
+      "LongitudCliente": 13.0
     },
-    "FechaNacimiento": "2002-05-21T00:00:00",
+    "FechaNacimiento": "1978-10-31T00:00:00",
     "FechaEliminacion": null,
     "FechaCreacion": "2024-10-22T00:48:42.6328855-03:00",
     "FechaActualizacion": null
