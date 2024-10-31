@@ -11,20 +11,20 @@
       "LongitudCliente": 1000.0
     },
     "FechaNacimiento": "2002-07-25T12:20:27.365Z",
-    "FechaEliminacion": null,
+    "FechaEliminacion": "2024-10-31T00:53:11.346761-03:00",
     "FechaCreacion": "2024-10-18T09:21:11.8155139-03:00",
     "FechaActualizacion": null
   },
   {
     "IdCliente": 2,
-    "DniCliente": 44023896,
-    "Nombre": "pepe",
-    "Apellido": "argento",
-    "Email": "pepe@gmail.com",
+    "DniCliente": 10000,
+    "Nombre": "Roberto",
+    "Apellido": "Carlos",
+    "Email": "robertito@gmail.com",
     "Telefono": "234421",
     "localizacionCliente": {
-      "LatitudCliente": 343849.0,
-      "LongitudCliente": 234567.0
+      "LatitudCliente": -89.0,
+      "LongitudCliente": 12.0
     },
     "FechaNacimiento": "2002-05-21T00:00:00",
     "FechaEliminacion": null,
@@ -157,6 +157,22 @@
     "FechaNacimiento": "2000-02-01T00:00:00",
     "FechaEliminacion": null,
     "FechaCreacion": "2024-10-29T15:56:08.1580302-03:00",
+    "FechaActualizacion": null
+  },
+  {
+    "IdCliente": 11,
+    "DniCliente": 23567123,
+    "Nombre": "sandra",
+    "Apellido": "perez",
+    "Email": "gisela@gmail.com",
+    "Telefono": "3492624869",
+    "localizacionCliente": {
+      "LatitudCliente": 62.0,
+      "LongitudCliente": 12.0
+    },
+    "FechaNacimiento": "1982-10-31T00:00:00",
+    "FechaEliminacion": null,
+    "FechaCreacion": "2024-10-31T00:44:25.3378122-03:00",
     "FechaActualizacion": null
   }
 ]

@@ -6,7 +6,7 @@ using SistemaServices;
 namespace SistemaWebApi.Controllers
 {
     [ApiController]
-    [Route("api/Compras")]
+    [Route("[controller]")] //esto lo tuve que cambiar si o si
     public class CompraController : ControllerBase
     {
         private CompraService compraService = new CompraService();
@@ -19,7 +19,7 @@ namespace SistemaWebApi.Controllers
         [HttpPost]
         public IActionResult AgregarCompra([FromBody] CompraDTO compraDto)
         {
-            var resultado = compraService.CrearCompra(compraDto);
+            var resultado = compraService.CrearCompra(compraDto);//esto esta mal, porque estas agregando la compra sin verificar, se tiene que poner después
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -38,6 +38,8 @@ namespace SistemaWebApi.Controllers
             }
             var respuesta = new { mensaje = resultado.Message };
             return Ok(respuesta);
+            
+            
 
         }
         [HttpGet]

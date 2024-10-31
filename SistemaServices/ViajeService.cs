@@ -14,6 +14,7 @@ namespace SistemaServices
     {   
         public ResultadoEntity AgregarViaje(ViajeDTO viaje)
         {
+            //todas estas validaciones se pueden hacer en el controller, ver captura en el wpp, lo mismo para el service de compras
             ResultadoEntity resultado = new ResultadoEntity() { Success = false };
             //validacion de fechas de entrada
             if (viaje.FechaEntregaDesde == viaje.FechaEntregaHasta)
@@ -92,8 +93,8 @@ namespace SistemaServices
             {
                 compra.FechaEntrega = compra.FechaEntrega.AddDays(14);
             }
-            resultado.Success = true;
-            resultado.Message = "Viajes asignados correctamente.";
+            resultado.Success = true;//controller
+            resultado.Message = "Viajes asignados correctamente."; //controller
             return resultado;
         }
     }

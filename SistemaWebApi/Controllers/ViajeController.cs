@@ -6,7 +6,7 @@ using SistemaServices;
 namespace SistemaWebApi.Controllers
 {
     [ApiController]
-    [Route("api/Viajes")]
+    [Route("[controller]")] //esto lo tuve que cambiar si o si
     public class ViajeController : ControllerBase
     {
         private ViajeService service = new ViajeService();

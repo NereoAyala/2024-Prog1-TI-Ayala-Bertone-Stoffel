@@ -19,20 +19,20 @@ namespace SistemaServices
             var producto = productos.Find(x => x.IdProducto == compraDto.CodProducto);
             if (producto == null) {
                 resultado.Errores.Add("Producto no encontrado");
-            }
+            } //esto se podria verificar en el controller
             else
             {
                 if ((producto.StockDisponible - compraDto.CantidadComprado) < 0)
                 {
                     resultado.Errores.Add("No se puede realizar la compra no hay stock suficiente");                    
                 }
-            }
+            }//esto capaz tambien se puede verificar en el controller
             List<ClienteEntity> clientes = ClienteFiles.LeerClientesDesdeJson();
             var cliente = clientes.Find(x => x.DniCliente == compraDto.DniCliente);
             if (cliente == null)
             {
                 resultado.Errores.Add("Cliente no encontrado");              
-            }
+            }//se puede verificar en el controller
             if (resultado.Errores.Count == 0) {
                 var monto = producto.PrecioUnitario * compraDto.CantidadComprado;
                 monto = monto + (monto * 0.21);
@@ -61,8 +61,8 @@ namespace SistemaServices
                 };
                 compras.Add(compra);
                 CompraFiles.EscribirCompra(compra);
-                resultado.Success = true;
-                resultado.Message = "Compra cargada con exito";
+                resultado.Success = true; //controller
+                resultado.Message = "Compra cargada con exito";//controller
             }
             return resultado;
         }

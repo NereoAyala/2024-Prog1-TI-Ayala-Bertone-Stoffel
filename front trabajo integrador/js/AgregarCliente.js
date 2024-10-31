@@ -44,7 +44,7 @@ document.getElementById('clienteForm').addEventListener('submit', function (even
 
 
     function llenarTablaclientes() {
-        fetch(`http://localhost:5247/api/Clientes`)
+        fetch(`http://localhost:5247/Cliente`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Error en la red');
