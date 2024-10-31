@@ -11,7 +11,7 @@ document.getElementById('formulario-actualizar-stock').addEventListener('submit'
         body: JSON.stringify(stock)
     })
 
-        .then(response => response.json())
+        /*.then(response => response.json())
         .then(data => {
             console.log('Respuesta de la API:', data);
             alert(data.message);
@@ -19,6 +19,21 @@ document.getElementById('formulario-actualizar-stock').addEventListener('submit'
         .catch(error => {
             console.error('Error al enviar los datos:', error);
             alert('Hubo un error al procesar la actualización del stock');
+        });*/
+        .then(response => response.json())
+        .then(data => {
+            console.log('Respuesta de la API:', data);
+            if (data.success) {
+                alert('Se ha actualizado el stock');
+            } else {
+                alert('No se ha podido actualizar el stock');
+            }
+        })
+        .catch(error => {
+            console.error('Error al enviar los datos:', error);
+            alert('Hubo un error al procesar la actualización del stock');
         });
+       
+       
 });
 

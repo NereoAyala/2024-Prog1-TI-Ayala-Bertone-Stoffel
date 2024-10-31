@@ -7,11 +7,11 @@
     "AnchoCaja": 10,
     "ProfundidadCaja": 10,
     "PrecioUnitario": 10000.0,
-    "StockDisponible": 675,
+    "StockDisponible": 691,
     "StockMinimo": 1,
     "FechaEliminacion": null,
     "FechaCreacion": "2024-10-28T15:52:34.2761638-03:00",
-    "FechaActualizacion": "2024-10-31T00:31:09.4041046-03:00"
+    "FechaActualizacion": "2024-10-31T11:17:49.0959294-03:00"
   },
   {
     "IdProducto": 2,

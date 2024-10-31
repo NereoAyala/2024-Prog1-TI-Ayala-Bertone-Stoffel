@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SistemaData;
 using SistemaDTO;
 using SistemaEntities;
 using SistemaServices;
@@ -10,37 +11,35 @@ namespace SistemaWebApi.Controllers
     public class CompraController : ControllerBase
     {
         private CompraService compraService = new CompraService();
-        private ResultadoEntity resultado = new ResultadoEntity();
+       
         public CompraController()
         {
             compraService = new CompraService();
-            resultado = new ResultadoEntity();
         }
         [HttpPost]
         public IActionResult AgregarCompra([FromBody] CompraDTO compraDto)
         {
-            var resultado = compraService.CrearCompra(compraDto);//esto esta mal, porque estas agregando la compra sin verificar, se tiene que poner después
-            if (!ModelState.IsValid)
+            List<ProductoEntity> productos = ProductoFiles.LeerProductosDesdeJson();
+            var producto = productos.Find(x => x.IdProducto == compraDto.CodProducto);
+            if (producto == null)
             {
-                return BadRequest(ModelState);
+                return NotFound(new { message = "Producto no encontrado", producto });
             }
-            // Si el ModelState es válido, entonces llamamos al servicio para realizar más validaciones
-           
-            if (!resultado.Success)
+            else
             {
-                // Añadir los errores del servicio al ModelState
-                foreach (var error in resultado.Errores)
+                if ((producto.StockDisponible - compraDto.CantidadComprado) < 0)
                 {
-                    ModelState.AddModelError(string.Empty, error);
+                    return BadRequest(new { message = "No se puede realizar la compra no hay stock suficiente", producto });
                 }
-                // Retornar todos los errores (del ModelState original y los errores de resultado)
-                return BadRequest(ModelState);
             }
-            var respuesta = new { mensaje = resultado.Message };
-            return Ok(respuesta);
-            
-            
-
+            List<ClienteEntity> clientes = ClienteFiles.LeerClientesDesdeJson();
+            var cliente = clientes.Find(x => x.DniCliente == compraDto.DniCliente);
+            if (cliente == null)
+            {
+               return NotFound(new { message = "Cliente no encontrado", cliente = cliente });
+            }
+            compraService.CrearCompra(compraDto);
+            return Ok(new { message = "Compra agregada con éxito", compra = compraDto });
         }
         [HttpGet]
         public IActionResult ObtenerCompras() {

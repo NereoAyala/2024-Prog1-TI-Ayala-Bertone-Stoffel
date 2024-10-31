@@ -12,46 +12,8 @@ namespace SistemaServices
 {
     public class ViajeService
     {   
-        public ResultadoEntity AgregarViaje(ViajeDTO viaje)
+        public void AgregarViaje(ViajeDTO viaje)
         {
-            //todas estas validaciones se pueden hacer en el controller, ver captura en el wpp, lo mismo para el service de compras
-            ResultadoEntity resultado = new ResultadoEntity() { Success = false };
-            //validacion de fechas de entrada
-            if (viaje.FechaEntregaDesde == viaje.FechaEntregaHasta)
-            {
-                resultado.Errores.Add("La fecha de inicio y la fecha de finalización no pueden ser iguales.");
-            }
-            if (viaje.FechaEntregaDesde < DateTime.Now)
-            {
-                resultado.Errores.Add("La fecha de inicio no puede ser menor a la fecha actual.");
-            }
-
-            if ((viaje.FechaEntregaHasta - viaje.FechaEntregaDesde).TotalDays > 7)
-            {
-                resultado.Errores.Add("La fecha de finalización solo puede ser como máximo 7 días después de la fecha de inicio.");
-            }
-            // Si hay errores de validación en las fechas, se devuelve el resultado de una
-            if (resultado.Errores.Any())
-            {
-                resultado.Message = "Error al cargar el viaje.";
-                return resultado;
-            }
-            List<ViajeEntity> viajes = ViajeFiles.LeerViajesDesdeJson();
-            //VERIFICO SOLAPAMIENTO DE LAS NUEVAS FECHAS CON OTROS VIAJES
-            foreach (var item in viajes)
-            {
-                // Casos cubiertos:
-                // 1. Inicio del nuevo viaje cae dentro del rango de un viaje existente.
-                // 2. Fin del nuevo viaje cae dentro del rango de un viaje existente.
-                // 3. El nuevo viaje abarca completamente el rango de un viaje existente.
-                if ((viaje.FechaEntregaDesde >= item.FechaEntregaDesde && viaje.FechaEntregaDesde <= item.FechaEntregaHasta) ||
-                     (viaje.FechaEntregaHasta >= item.FechaEntregaDesde && viaje.FechaEntregaHasta <= item.FechaEntregaHasta) ||
-                     (viaje.FechaEntregaDesde <= item.FechaEntregaDesde && viaje.FechaEntregaHasta >= item.FechaEntregaHasta))
-                {
-                    resultado.Errores.Add("Ya hay un viaje asignado en estas fechas.");
-                    return resultado;
-                }
-            }
             List<CompraEntity> compras = CompraFiles.LeerCompraDesdeJson();
             List<CamionetaEntity> camionetas = CamionetaFiles.LeerCamionetasDesdeJson().OrderBy(x => x.DistanciaMax).ThenBy(x => x.TamañoCarga).ToList(); //TOMO LAS CAMIONETAS Y LAS ORDENO PRIMERO POR DISTANCIA Y LUEGO POR CAPACIDAD DE CARGA 
             List<int> comprasYaAsignadas = new List<int>();//ESTA LISTA ES PARA IR VIENDO LAS COMPRAS YA ASIGANDAS ENTONCES EN LA SEGUNDA CAMIONETA YA NOS SE TIENEN EN CUENTA LAS COMPRAS QUE YA SE ASIGNARON A LA PRIMER CAMIONETA
@@ -92,10 +54,7 @@ namespace SistemaServices
             foreach (var compra in compras.Where(x => x.EstadoCompra == Enums.EstadoCompra.Open))
             {
                 compra.FechaEntrega = compra.FechaEntrega.AddDays(14);
-            }
-            resultado.Success = true;//controller
-            resultado.Message = "Viajes asignados correctamente."; //controller
-            return resultado;
+            }  
         }
     }
 }

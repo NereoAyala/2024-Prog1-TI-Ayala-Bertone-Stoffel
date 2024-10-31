@@ -311,7 +311,7 @@
     "DniCliente": 29514775,
     "CantidadComprado": 0,
     "FechaEntrega": "2024-10-30T00:00:00",
-    "EstadoCompra": 1,
+    "EstadoCompra": 2,
     "MontoCompra": 0.0,
     "PuntoDestino": {
       "LatitudCliente": -31.0,
@@ -328,7 +328,7 @@
     "DniCliente": 29514775,
     "CantidadComprado": 0,
     "FechaEntrega": "2024-10-30T00:00:00",
-    "EstadoCompra": 1,
+    "EstadoCompra": 2,
     "MontoCompra": 0.0,
     "PuntoDestino": {
       "LatitudCliente": -31.0,
@@ -345,7 +345,7 @@
     "DniCliente": 29514775,
     "CantidadComprado": 1,
     "FechaEntrega": "2024-10-16T00:00:00",
-    "EstadoCompra": 1,
+    "EstadoCompra": 2,
     "MontoCompra": 9075.0,
     "PuntoDestino": {
       "LatitudCliente": -31.0,
@@ -362,7 +362,7 @@
     "DniCliente": 29514775,
     "CantidadComprado": 1,
     "FechaEntrega": "2024-10-30T00:00:00",
-    "EstadoCompra": 1,
+    "EstadoCompra": 2,
     "MontoCompra": 9075.0,
     "PuntoDestino": {
       "LatitudCliente": -31.0,
@@ -388,6 +388,40 @@
     "TamañoCajaTotal": 12000.0,
     "FechaEliminacion": null,
     "FechaCreacion": "2024-10-29T14:41:47.9247261-03:00",
+    "FechaActualizacion": null
+  },
+  {
+    "IdCompra": 24,
+    "CodProducto": 1,
+    "DniCliente": 29514775,
+    "CantidadComprado": 10,
+    "FechaEntrega": "2024-11-29T00:00:00",
+    "EstadoCompra": 1,
+    "MontoCompra": 90750.0,
+    "PuntoDestino": {
+      "LatitudCliente": -31.0,
+      "LongitudCliente": -62.0
+    },
+    "TamañoCajaTotal": 10000.0,
+    "FechaEliminacion": null,
+    "FechaCreacion": "2024-10-31T11:38:28.3528179-03:00",
+    "FechaActualizacion": null
+  },
+  {
+    "IdCompra": 25,
+    "CodProducto": 1,
+    "DniCliente": 29514775,
+    "CantidadComprado": 10,
+    "FechaEntrega": "2024-11-02T00:00:00",
+    "EstadoCompra": 1,
+    "MontoCompra": 90750.0,
+    "PuntoDestino": {
+      "LatitudCliente": -31.0,
+      "LongitudCliente": -62.0
+    },
+    "TamañoCajaTotal": 10000.0,
+    "FechaEliminacion": null,
+    "FechaCreacion": "2024-10-31T11:42:06.95493-03:00",
     "FechaActualizacion": null
   }
 ]

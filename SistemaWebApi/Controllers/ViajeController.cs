@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SistemaData;
 using SistemaDTO;
 using SistemaEntities;
 using SistemaServices;
@@ -6,7 +7,7 @@ using SistemaServices;
 namespace SistemaWebApi.Controllers
 {
     [ApiController]
-    [Route("[controller]")] //esto lo tuve que cambiar si o si
+    [Route("[controller]")] 
     public class ViajeController : ControllerBase
     {
         private ViajeService service = new ViajeService();
@@ -17,20 +18,37 @@ namespace SistemaWebApi.Controllers
             {
                 return BadRequest(ModelState);
             }
-            // Si el ModelState es válido, entonces llamamos al servicio para realizar más validaciones
-            ResultadoEntity resultado = service.AgregarViaje(viajeDTO);
-            if (!resultado.Success)
+
+            if (viajeDTO.FechaEntregaDesde == viajeDTO.FechaEntregaHasta)
             {
-                // Añadir los errores del servicio al ModelState
-                foreach (var error in resultado.Errores)
-                {
-                    ModelState.AddModelError(string.Empty, error);
-                }
-                // Retornar todos los errores (del ModelState original y los errores de resultado)
-                return BadRequest(ModelState);
+                return BadRequest(new { message = "La fecha de inicio y la fecha de finalización no pueden ser iguales.", viajeDTO });
             }
-            var respuesta = new { mensaje = resultado.Message };
-            return Ok(respuesta);
+
+            if (viajeDTO.FechaEntregaDesde < DateTime.Now)
+            {
+                return BadRequest(new { message = "La fecha de inicio no puede ser menor a la fecha actual.", viajeDTO });
+            }
+
+            if ((viajeDTO.FechaEntregaHasta - viajeDTO.FechaEntregaDesde).TotalDays > 7)
+            {
+                return BadRequest(new { message = "La fecha de finalización solo puede ser como máximo 7 días después de la fecha de inicio.", viajeDTO });
+            }
+            List<ViajeEntity> viajes = ViajeFiles.LeerViajesDesdeJson();
+            foreach (var item in viajes)
+            {
+                // Casos cubiertos:
+                // 1. Inicio del nuevo viaje cae dentro del rango de un viaje existente.
+                // 2. Fin del nuevo viaje cae dentro del rango de un viaje existente.
+                // 3. El nuevo viaje abarca completamente el rango de un viaje existente.
+                if ((viajeDTO.FechaEntregaDesde >= item.FechaEntregaDesde && viajeDTO.FechaEntregaDesde <= item.FechaEntregaHasta) ||
+                     (viajeDTO.FechaEntregaHasta >= item.FechaEntregaDesde && viajeDTO.FechaEntregaHasta <= item.FechaEntregaHasta) ||
+                     (viajeDTO.FechaEntregaDesde <= item.FechaEntregaDesde && viajeDTO.FechaEntregaHasta >= item.FechaEntregaHasta))
+                {
+                    return BadRequest(new { message = "Ya hay un viaje asignado en estas fechas.", viajeDTO });
+                }
+            }
+            service.AgregarViaje(viajeDTO);
+            return Ok(new { message = "Viaje agregado con éxito", viaje = viajeDTO });
         }
     }
 }

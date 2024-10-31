@@ -6,39 +6,22 @@ document.getElementById('Asignacion-Viaje').addEventListener('submit', function 
         FechaEntregaDesde: fechaDesde,
         FechaEntregaHasta: fechaHasta
     };
-    fetch('http://localhost:5247/api/Viajes', {
+    fetch('http://localhost:5247/Viaje', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(datos)
     })
-    
-    .then(response => {
-        if (!response.ok) {
-            // Si la respuesta no es exitosa, intenta obtener el cuerpo del error
-            return response.json().then(body => {
-                // Verifica si hay errores en el cuerpo de la respuesta
-                if (body && body[""]) {
-                    // Muestra todos los mensajes de error en un alert
-                    alert('Errores:\n' + body[""].join('\n'));
-                } else {
-                    alert("Se ha producido un error desconocido.");
-                }
-                throw new Error('Errores en la solicitud'); // Lanza un error para manejar el catch
-            });
-        }
-
-        // Si la respuesta es exitosa, maneja el resultado
-        return response.json(); 
-    })
+    .then(response => response.json())
     .then(data => {
-        alert(data.mensaje );
+        console.log('Respuesta de la API:', data);
+        alert(data.message);
     })
     .catch(error => {
-        console.error('Fetch error:', error);
+        console.error('Error al enviar los datos:', error);
+        alert(data.message);
     });
-
 
 });
 

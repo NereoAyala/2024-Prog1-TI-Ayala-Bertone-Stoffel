@@ -6,7 +6,7 @@ using SistemaServices;
 namespace SistemaWebApi.Controllers
 {
     [ApiController]
-    [Route("[controller]")] //esto lo tuve que cambiar si o si
+    [Route("[controller]")] 
     public class ProductoController : ControllerBase
     {
         ProductoService producto=new ProductoService();
@@ -14,12 +14,6 @@ namespace SistemaWebApi.Controllers
         [HttpPost]
         public IActionResult AgregarProducto([FromBody]ProductoDTO productoDTO) 
         {
-
-            //if (string.IsNullOrEmpty(productoDTO.Nombre))
-            //{
-            //    ModelState.AddModelError("NombreProducto", "El Nombre del Producto es Obligatorio.");
-            //    return BadRequest(ModelState);
-            //}
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -30,27 +24,20 @@ namespace SistemaWebApi.Controllers
         [HttpPut("{id}")]
         public IActionResult ActualizarStock(int id,[FromBody]int stockNuevo) 
         {
-            //if (!ModelState.IsValid)
-            //{
-            //    return BadRequest(new { message = "Error en los datos ingresados", ModelState });
-            //}
-
             var Producto = producto.ActualizarStockProducto(id, stockNuevo);
             if (Producto == null)
             {
-                // return NotFound("Producto no encontrado.");
-                return NotFound(new { message = "Producto no encontrado", producto = Producto });
+                // return NotFound(new { message = "Producto no encontrado", producto = Producto });
+                return NotFound(new {success = false, Producto });
             }
-            return Ok(new { message = "Producto actualizado con exito", productoActualizado = Producto });
-            //return Ok("Producto actualizado con éxito.");
+            //return Ok(new { message = "Producto actualizado con exito", productoActualizado = Producto });
+            return Ok(new {success = true, Producto });
         }
         [HttpGet()]
         public IActionResult FiltrarProductos([FromQuery] int limite)
         {
-            //hacer que se muestren los productos con stock menor o igual al limite
             List<ProductoDTO> productos = producto.FiltrarProductosPorStock(limite);
             return Ok(productos);
-
         }
     }
 }
