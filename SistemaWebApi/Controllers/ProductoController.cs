@@ -19,7 +19,7 @@ namespace SistemaWebApi.Controllers
                 return BadRequest(ModelState);
             }
             producto.AgregarProducto(productoDTO);
-            return Ok(new { message = "Producto agregado con éxito", producto = productoDTO });
+            return Ok(new { success = true, productoDTO });
         }
         [HttpPut("{id}")]
         public IActionResult ActualizarStock(int id,[FromBody]int stockNuevo) 
@@ -27,10 +27,8 @@ namespace SistemaWebApi.Controllers
             var Producto = producto.ActualizarStockProducto(id, stockNuevo);
             if (Producto == null)
             {
-                // return NotFound(new { message = "Producto no encontrado", producto = Producto });
                 return NotFound(new {success = false, Producto });
             }
-            //return Ok(new { message = "Producto actualizado con exito", productoActualizado = Producto });
             return Ok(new {success = true, Producto });
         }
         [HttpGet()]

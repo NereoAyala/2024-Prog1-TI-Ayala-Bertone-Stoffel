@@ -10,7 +10,8 @@ namespace SistemaData
 {
     public class ClienteFiles
     {
-        private static string ClienteFile = Path.GetFullPath("..//SistemaData//Listas//Cliente.json");
+        //private static string ClienteFile = Path.GetFullPath("..//SistemaData//Listas//Cliente.json");
+        private static string ClienteFile = "Cliente.json";
         public static List<ClienteEntity> LeerClientesDesdeJson()
         {
             if (File.Exists($"{ClienteFile}"))

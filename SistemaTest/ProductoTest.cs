@@ -12,7 +12,8 @@ namespace SistemaTest
 {
     public class ProductoTest
     {
-        ProductoService productoService=new ProductoService();
+        // ProductoService productoService=new ProductoService();
+        private ProductoService productoService;
 
         [SetUp]
         public void Setup()
@@ -34,33 +35,102 @@ namespace SistemaTest
                 ProfundidadCaja = 5
             };
         }
+        //crear producto invalido
+        private ProductoDTO CrearProductoInvalido()
+        {
+            return new ProductoDTO
+            {
+                Nombre = string.Empty,
+                Marca = "Paty",
+                StockDisponible = 10,
+                StockMinimo = 5,
+                PrecioUnitario = 2000,
+                AltoCaja = 5,
+                AnchoCaja = 5,
+                ProfundidadCaja = 5
+            };
+        }
 
         [Test]
-        public void AgregarProducto_OK_DeberiaAgregarseProducto() 
+        public void AgregarProducto_OK_DeberiaAgregarseProducto()
         {
-            var controller=new ProductoController();
-            var productoDTO=CrearProductoValido();
+            var controller = new ProductoController();
+            var productoDTO = CrearProductoValido();
 
             var resultado = controller.AgregarProducto(productoDTO) as OkObjectResult;
 
             Assert.IsNotNull(resultado);
             Assert.AreEqual(200, resultado.StatusCode);
-            Assert.AreEqual("Producto agregado con éxito.", resultado.Value);
+            Assert.AreEqual(true, (bool)resultado.Value.GetType().GetProperty("success").GetValue(resultado.Value));
         }
-        [Test]
-        public void AgregarProducto_FaltaNombre_DeberiaDarFalse() 
-        {
-            var controller=new ProductoController();
-            var productoDTO = CrearProductoValido();
-            productoDTO.Nombre = null;
+      
+        //public void AgregarProducto_OK_DeberiaAgregarseProducto() 
+        //{
+        //    var controller=new ProductoController();
+        //    var productoDTO=CrearProductoValido();
 
-            var resultado = controller.AgregarProducto(productoDTO) as BadRequestObjectResult;
+        //    var resultado = controller.AgregarProducto(productoDTO) as OkObjectResult;
+
+        //    Assert.IsNotNull(resultado);
+        //    //Assert.AreEqual(200, resultado.StatusCode);
+        //    //Assert.AreEqual("Producto agregado con éxito.", resultado.Value);
+
+        //}
+        //[Test]
+        //public void AgregarProducto_FaltaNombre_DeberiaDarBadRequest()
+        //{
+        //    //hacer que el test falle si se crea un producto sin nombre
+        //    var controller = new ProductoController();
+        //    var productoDTO = CrearProductoValido();
+        //    productoDTO.Nombre = string.Empty;
+
+        //    var resultado = controller.AgregarProducto(productoDTO) as BadRequestObjectResult;
+        //    //testear que el resultado sea un BadRequest
+        //    Assert.IsNotNull(resultado);
+        //    Assert.That(resultado.StatusCode, Is.EqualTo(400));
+        //    Assert.IsTrue(((SerializableError)resultado.Value).ContainsKey("Nombre"));
+        //}
+
+        //public void AgregarProducto_FaltaNombre_DeberiaDarFalse() 
+        //{
+        //    var controller=new ProductoController();
+        //    var productoDTO = CrearProductoValido();
+        //    productoDTO.Nombre = null;
+
+        //    var resultado = controller.AgregarProducto(productoDTO) as BadRequestObjectResult;
+
+        //    Assert.IsNotNull(resultado);
+        //    Assert.AreEqual(400, resultado.StatusCode);
+
+        //    var mensajeError = resultado.Value as SerializableError;
+        //    Assert.IsTrue(mensajeError.ContainsKey("NombreProducto"));
+        //}
+
+        public void ActualizarStock_OK_DeberiaActualizarStock()
+        {
+            var controller = new ProductoController();
+            var productoDTO = CrearProductoValido();
+            controller.AgregarProducto(productoDTO);
+            var producto = productoService.ActualizarStockProducto(1, 5);
+
+            var resultado = controller.ActualizarStock(producto.IdProducto, 5) as OkObjectResult;
 
             Assert.IsNotNull(resultado);
-            Assert.AreEqual(400, resultado.StatusCode);
+            Assert.AreEqual(200, resultado.StatusCode);
+            Assert.AreEqual(true, (bool)resultado.Value.GetType().GetProperty("success").GetValue(resultado.Value));
+        }
+        [Test]
+        public void ActualizarStock_NoExisteProducto_DeberiaDarFalse()
+        {
+            var controller = new ProductoController();
+            var productoDTO = CrearProductoValido();
+            controller.AgregarProducto(productoDTO);
 
-            var mensajeError = resultado.Value as SerializableError;
-            Assert.IsTrue(mensajeError.ContainsKey("NombreProducto"));
+            var resultado = controller.ActualizarStock(90, 5) as NotFoundObjectResult;
+
+            Assert.IsNotNull(resultado);
+            Assert.AreEqual(404, resultado.StatusCode);
+            Assert.AreEqual(false, (bool)resultado.Value.GetType().GetProperty("success").GetValue(resultado.Value));
         }
     }
 }

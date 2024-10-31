@@ -19,7 +19,7 @@ namespace SistemaWebApi.Controllers
         {
             if (clienteDTO.DniCliente <= 0)
             {
-                return BadRequest(new { message = "El DNI debe ser un número positivo.", cliente = clienteDTO });
+                return BadRequest(new { message = "El DNI del cliente no puede ser menor o igual a 0", cliente = clienteDTO });
             }
             var clientes = ClienteFiles.LeerClientesDesdeJson();
             if (clientes.Any(c => c.DniCliente == clienteDTO.DniCliente))
