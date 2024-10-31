@@ -36,10 +36,6 @@ namespace SistemaWebApi.Controllers
             List<ViajeEntity> viajes = ViajeFiles.LeerViajesDesdeJson();
             foreach (var item in viajes)
             {
-                // Casos cubiertos:
-                // 1. Inicio del nuevo viaje cae dentro del rango de un viaje existente.
-                // 2. Fin del nuevo viaje cae dentro del rango de un viaje existente.
-                // 3. El nuevo viaje abarca completamente el rango de un viaje existente.
                 if ((viajeDTO.FechaEntregaDesde >= item.FechaEntregaDesde && viajeDTO.FechaEntregaDesde <= item.FechaEntregaHasta) ||
                      (viajeDTO.FechaEntregaHasta >= item.FechaEntregaDesde && viajeDTO.FechaEntregaHasta <= item.FechaEntregaHasta) ||
                      (viajeDTO.FechaEntregaDesde <= item.FechaEntregaDesde && viajeDTO.FechaEntregaHasta >= item.FechaEntregaHasta))

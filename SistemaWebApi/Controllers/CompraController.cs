@@ -7,7 +7,7 @@ using SistemaServices;
 namespace SistemaWebApi.Controllers
 {
     [ApiController]
-    [Route("[controller]")] //esto lo tuve que cambiar si o si
+    [Route("[controller]")]
     public class CompraController : ControllerBase
     {
         private CompraService compraService = new CompraService();
