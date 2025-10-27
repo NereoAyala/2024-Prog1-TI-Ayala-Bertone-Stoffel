@@ -11,7 +11,7 @@ namespace SistemaDTO
     public class ClienteDTO
     {
         [Required(ErrorMessage = "El DNI del cliente es obligatorio.")]
-        [Range(1, int.MaxValue, ErrorMessage = "El DNI debe ser un número positivo.")]
+        [Range(1, int.MaxValue, ErrorMessage = "El DNI debe ser un número positivo")]
         public int DniCliente { get; set; }
 
         [Required(ErrorMessage = "El nombre es obligatorio.")]
